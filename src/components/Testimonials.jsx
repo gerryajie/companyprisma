@@ -5,10 +5,10 @@ import { clientCompanies } from '../client-companies'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 const testimonials = [
-  { text: 'Dapat memonitor penggunaan konsumsi listrik secara real time dan mengkonversinya dalam rupiah.', product: 'Dashboard Monitoring Konsumsi Listrik', company: 'PT PAMA' },
-  { text: 'Memonitor kandungan udara dan kelayakan udara secara realtime.', product: 'Dashboard Monitoring Kelayakan Kualitas Udara', company: 'PT PAMA' },
-  { text: 'Memonitor kondisi unit, suhu, dan konsumsi daya dari perangkat mesin HVAC yang terpasang.', product: 'Dashboard Monitoring Mesin HVAC', company: 'PT Alam Teknik Utama' },
-  { text: 'Monitor pressure pada setiap titik di field dan memonitornya dari ruang central.', product: 'Dashboard Monitoring Gas', company: 'PT Lemigas' },
+  { text: 'Prisma membantu PT PAMA mengubah data konsumsi listrik menjadi insight yang mudah dipantau secara real time—termasuk estimasi biaya dalam rupiah untuk mendukung keputusan operasional yang lebih cepat.', product: 'Dashboard Monitoring Konsumsi Listrik', company: 'PT PAMA' },
+  { text: 'Dengan solusi Prisma, PT PAMA dapat memantau kualitas udara secara real time sehingga kondisi lingkungan lebih mudah dikendalikan dan ditindaklanjuti.', product: 'Dashboard Monitoring Kelayakan Kualitas Udara', company: 'PT PAMA' },
+  { text: 'Prisma menghadirkan visibilitas terpusat untuk memantau kondisi unit HVAC, suhu, dan konsumsi daya—membantu tim bekerja lebih responsif dan efisien.', product: 'Dashboard Monitoring Mesin HVAC', company: 'PT Alam Teknik Utama' },
+  { text: 'Solusi monitoring Prisma memudahkan PT Lemigas memantau pressure di setiap titik field dari ruang central, dengan data yang lebih terstruktur untuk mendukung pengawasan operasional.', product: 'Dashboard Monitoring Gas', company: 'PT Lemigas' },
 ]
 
 export default function Testimonials() {

@@ -7,7 +7,7 @@ import Services from './components/Services'
 import Industries from './components/Industries'
 import Process from './components/Process'
 import About from './components/About'
-import Clients from './components/Clients'
+import Testimonials from './components/Testimonials'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import FloatingWhatsApp from './components/FloatingWhatsApp'
@@ -28,7 +28,7 @@ function App() {
         <Industries />
         <Process />
         <About />
-        <Clients />
+        <Testimonials />
         <Contact />
         <Footer />
         <FloatingWhatsApp />

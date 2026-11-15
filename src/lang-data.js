@@ -5,7 +5,7 @@ export const content = {
     nav_industries: 'Industri',
     nav_process: 'Proses Kerja',
     nav_about: 'Tentang',
-    nav_testimonials: 'Testimoni',
+    nav_clients: 'Klien',
     nav_toggle_aria: 'Buka menu navigasi',
     nav_cta: 'Diskusikan Proyek',
     
@@ -42,12 +42,10 @@ export const content = {
     about_h2: 'Tentang Prisma Centra Nusantara',
     about_p: 'Prisma Centra Nusantara adalah perusahaan teknologi informasi yang baru berdiri, didukung oleh tim profesional dengan pengalaman lebih dari 5 tahun di industri pengembangan perangkat lunak, infrastruktur cloud, dan transformasi digital.',
     
-    // Testimonials
-    testimonials_label: 'Testimoni',
-    testimonials_h2: 'Apa Kata Mereka tentang Kami',
-    testimonials_lead: 'Kepercayaan klien adalah dasar kami dalam membangun kemitraan jangka panjang.',
-    testi_prev: 'Sebelumnya',
-    testi_next: 'Selanjutnya',
+    // Clients
+    clients_label: 'Klien',
+    clients_h2: 'Dipercaya oleh Perusahaan Terkemuka',
+    clients_lead: 'Kami bermitra dengan organisasi dari berbagai sektor untuk membangun sistem yang andal dan berkelanjutan.',
     
     // Contact
     contact_h2: 'Siap Memulai Transformasi Digital?',
@@ -73,7 +71,7 @@ export const content = {
     nav_industries: 'Industries',
     nav_process: 'Our Process',
     nav_about: 'About',
-    nav_testimonials: 'Testimonials',
+    nav_clients: 'Clients',
     nav_toggle_aria: 'Open menu',
     nav_cta: 'Start a Project',
     
@@ -110,12 +108,10 @@ export const content = {
     about_h2: 'About Prisma Centra Nusantara',
     about_p: 'Prisma Centra Nusantara is a newly established information technology company, backed by a professional team with over 5 years of experience in software development, cloud infrastructure, and digital transformation.',
     
-    // Testimonials
-    testimonials_label: 'Testimonials',
-    testimonials_h2: 'What They Say About Us',
-    testimonials_lead: 'Client trust is the foundation for building long-term partnerships.',
-    testi_prev: 'Previous',
-    testi_next: 'Next',
+    // Clients
+    clients_label: 'Clients',
+    clients_h2: 'Trusted by Leading Companies',
+    clients_lead: 'We partner with organisations across sectors to build reliable, sustainable systems.',
     
     // Contact
     contact_h2: 'Ready to Start Your Digital Transformation?',

@@ -192,6 +192,9 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 :root[data-theme='dark'] .marquee-item img { filter: brightness(0) invert(1); }
 :root[data-theme='dark'] .marquee-item:hover { opacity: 1; }
 :root[data-theme='dark'] .marquee-item:hover img { filter: none; }
+:root[data-theme='dark'] .client-card img { filter: brightness(0) invert(1); opacity: .85; }
+:root[data-theme='dark'] .client-card:hover img { opacity: 1; }
+:root[data-theme='dark'] .client-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,.35); }
 :root[data-theme='dark'] .cred-num,
 :root[data-theme='dark'] .process-step:hover .step-num { background: #172554; }
 :root[data-theme='dark'] .contact-band { background: #111827; }
@@ -784,104 +787,40 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 }
 
 /* ══════════════════════════════════════════════════════════
-   TESTIMONIAL CAROUSEL
+   CLIENT LOGO WALL
    ══════════════════════════════════════════════════════════ */
-.testi-carousel {
-  position: relative;
-  max-width: 820px;
-  margin: 0 auto;
-}
-.testi-slide {
-  text-align: center;
-  padding: 20px 0 40px;
-}
-.testi-quote-mark {
-  font-family: Georgia, serif;
-  font-size: 4.5rem;
-  line-height: .7;
-  color: var(--line-dark);
-  margin-bottom: 8px;
-}
-.testi-text {
-  font-family: var(--font-b);
-  font-size: 1.12rem;
-  font-style: italic;
-  color: var(--ink-soft);
-  line-height: 1.72;
-  max-width: 680px;
-  margin: 0 auto 32px;
-}
-.testi-author {
-  display: inline-flex;
-  align-items: center;
-  gap: 14px;
-}
-.testi-avatar {
-  width: 48px; height: 48px;
-  border-radius: 50%;
-  background: var(--accent);
-  color: #fff;
-  display: flex; align-items: center; justify-content: center;
-  font-family: var(--font-h);
-  font-weight: 700;
-  font-size: 1.05rem;
-  flex-shrink: 0;
-}
-.testi-info { text-align: left; }
-.testi-info strong {
-  display: block;
-  font-family: var(--font-h);
-  font-size: .95rem;
-  font-weight: 700;
-  color: var(--ink);
-}
-.testi-info small {
-  font-size: .81rem;
-  color: var(--text-mid);
-}
-
-.testi-nav {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.clients-section { background: var(--bg); border-top: 1px solid var(--line); }
+.clients-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   gap: 16px;
-  margin-top: 8px;
 }
-.testi-btn {
-  width: 40px; height: 40px;
-  border-radius: 50%;
-  border: 1px solid var(--line);
-  background: var(--surface);
-  display: flex; align-items: center; justify-content: center;
-  color: var(--text-mid);
-  transition: all .2s;
-  cursor: pointer;
-}
-.testi-btn:hover:not(:disabled) {
-  border-color: var(--accent);
-  color: var(--accent);
-  background: #F0F6FF;
-}
-.testi-btn:disabled { opacity: .35; cursor: default; }
-
-.testi-dots {
+.client-card {
   display: flex;
-  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  min-height: 104px;
+  padding: 22px 18px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  transition: border-color .25s ease, transform .25s ease, box-shadow .25s ease;
 }
-.testi-dot {
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  background: var(--line-dark);
-  border: none;
-  cursor: pointer;
-  transition: all .25s;
-  padding: 0;
+.client-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(11,27,43,.08);
 }
-.testi-dot.active {
-  background: var(--accent);
-  width: 28px;
-  border-radius: 4px;
+.client-card img {
+  max-width: 100%;
+  max-height: 44px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  opacity: .78;
+  transition: opacity .25s ease;
 }
+.client-card:hover img { opacity: 1; }
 
 /* ══════════════════════════════════════════════════════════
    CONTACT CTA
@@ -1072,8 +1011,9 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   .contact-band h2 { font-size: clamp(1.5rem, 7vw, 2rem); }
   .contact-row { flex-direction: column; align-items: stretch; gap: 12px; margin-top: 24px; }
   .contact-item { font-size: .84rem; gap: 8px; }
-  .testi-quote-mark { font-size: 2.8rem; }
-  .testi-text { font-size: 1rem; }
+  .clients-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .client-card { min-height: 88px; padding: 16px 12px; }
+  .client-card img { max-height: 34px; }
 
   .footer-grid { grid-template-columns: 1fr; gap: 28px; padding-bottom: 36px; }
   .footer { padding-bottom: 88px; }

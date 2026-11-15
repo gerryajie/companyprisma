@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 56" role="img" aria-label="KARYA MANDIRI">
+  <rect x="0" y="0" width="56" height="56" rx="12" fill="#0B1B2B"/>
+  <path d="M16 34 L28 16 L40 34 Z" fill="#FFFFFF" opacity=".92"/>
+  <text x="68" y="26" font-family="Helvetica,Arial,sans-serif" font-size="17" font-weight="800" letter-spacing=".5" fill="#0B1B2B">KARYA</text>
+  <text x="68" y="44" font-family="Helvetica,Arial,sans-serif" font-size="12" font-weight="600" letter-spacing="3.4" fill="#0B1B2B" opacity=".72">MANDIRI</text>
+</svg>

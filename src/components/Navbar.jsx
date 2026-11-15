@@ -32,6 +32,11 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  useEffect(() => {
+    document.body.style.overflow = open ? 'hidden' : ''
+    return () => { document.body.style.overflow = '' }
+  }, [open])
+
   const t = content[lang]
 
   return (
@@ -57,7 +62,7 @@ export default function Navbar() {
               </a>
             </li>
           ))}
-          <li className="nav-lang-toggle">
+          <li className="nav-controls">
             <button
               className="lang-btn"
               onClick={() => setLang(lang === 'id' ? 'en' : 'id')}
@@ -65,8 +70,6 @@ export default function Navbar() {
             >
               {lang === 'id' ? 'EN' : 'ID'}
             </button>
-          </li>
-          <li className="nav-theme-toggle">
             <button
               className="theme-btn"
               onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}

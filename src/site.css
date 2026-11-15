@@ -125,7 +125,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   position: fixed;
   right: 24px;
   bottom: 24px;
-  z-index: 1100;
+  z-index: 900;
   width: 58px;
   height: 58px;
   display: flex;
@@ -143,7 +143,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   box-shadow: 0 8px 28px rgba(37,211,102,.6);
 }
 @media (max-width: 600px) {
-  .floating-wa { right: 16px; bottom: 16px; width: 54px; height: 54px; }
+  .floating-wa { right: 14px; bottom: calc(16px + env(safe-area-inset-bottom)); width: 52px; height: 52px; }
 }
 
 /* ══════════════════════════════════════════════════════════
@@ -152,7 +152,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .navbar {
   position: sticky;
   top: 0;
-  z-index: 999;
+  z-index: 1200;
   background: rgba(255,255,255,.92);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid transparent;
@@ -167,12 +167,18 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   border-color: var(--line);
   box-shadow: 0 1px 12px rgba(0,0,0,.05);
 }
-.nav-theme-toggle { display: flex; align-items: center; }
+.nav-controls { display: flex; align-items: center; gap: 8px; }
+.lang-btn,
 .theme-btn {
-  width: 34px; height: 34px; display: inline-flex; align-items: center; justify-content: center;
-  border: 1px solid var(--line); border-radius: 50%; color: var(--text); transition: color .2s, border-color .2s, background .2s;
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 34px; height: 34px; border-radius: 6px;
+  border: 1px solid var(--line); color: var(--ink-soft); background: transparent;
+  font-size: .75rem; font-weight: 700; letter-spacing: .06em;
+  transition: border-color .2s, color .2s, background .2s;
 }
-.theme-btn:hover { color: var(--accent); border-color: var(--accent); background: var(--surface); }
+.lang-btn:hover,
+.theme-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--surface); }
+.theme-btn { border-radius: 50%; }
 :root[data-theme='dark'] .navbar { background: rgba(10,15,26,.92); }
 :root[data-theme='dark'] .navbar.scrolled { box-shadow: 0 1px 16px rgba(0,0,0,.25); }
 :root[data-theme='dark'] .topbar a:hover { color: var(--ink); }
@@ -306,7 +312,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
    HERO — Navy editorial, no gradients, no glows
    ══════════════════════════════════════════════════════════ */
 .hero {
-  background: var(--ink);
+  background: #0B1B2B;
   color: #E8ECF1;
   padding: 110px 0 90px;
   overflow: hidden;
@@ -386,7 +392,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   padding-top: 28px;
   border-top: 1px solid rgba(255,255,255,.08);
   font-size: .82rem;
-  color: #64748B;
+  color: #94A3B8;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -445,7 +451,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 }
 .panel-stat span {
   font-size: .74rem;
-  color: #64748B;
+  color: #94A3B8;
   letter-spacing: .04em;
   text-transform: uppercase;
 }
@@ -455,7 +461,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   font-size: .78rem;
   letter-spacing: .1em;
   text-transform: uppercase;
-  color: #475569;
+  color: #94A3B8;
   position: relative;
   z-index: 1;
 }
@@ -876,7 +882,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
    CONTACT CTA
    ══════════════════════════════════════════════════════════ */
 .contact-band {
-  background: var(--ink);
+  background: #0B1B2B;
   color: #E8ECF1;
   padding: 86px 0;
   text-align: center;
@@ -991,17 +997,26 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   .navbar { padding: 0 20px; height: 64px; }
   .nav-toggle { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 10px; border: 1px solid var(--line); color: var(--ink); }
   .nav-links {
-    position: absolute; top: 100%; left: 0; right: 0;
+    position: fixed; top: 64px; left: 0; right: 0; bottom: 0;
+    height: calc(100dvh - 64px);
     flex-direction: column; align-items: stretch; gap: 0;
-    background: var(--surface); border-bottom: 1px solid var(--line);
-    max-height: 0; overflow: hidden; transition: max-height .35s ease;
+    background: var(--surface);
+    padding: 8px 0 32px;
+    overflow-y: auto; overscroll-behavior: contain;
+    opacity: 0; transform: translateY(-6px); pointer-events: none;
+    visibility: hidden;
+    transition: opacity .22s ease, transform .22s ease, visibility .22s;
     box-shadow: 0 12px 32px rgba(0,0,0,.08);
   }
-  .nav-links.open { max-height: 400px; }
+  .nav-links.open { opacity: 1; transform: none; pointer-events: auto; visibility: visible; }
   .nav-links li { width: 100%; }
-  .nav-links a { padding: 14px 24px; border-bottom: 1px solid #F1F3F6; }
+  .nav-links a { display: block; width: 100%; padding: 16px 22px; font-size: .95rem; border-bottom: 1px solid var(--line); }
   .nav-links a::after { display: none; }
-  .btn-nav { margin: 12px 24px; width: 100%; display: inline-block; text-align: center; }
+  .nav-controls { padding: 16px 22px; justify-content: flex-start; gap: 10px; border-bottom: 1px solid var(--line); }
+  .nav-controls .lang-btn,
+  .nav-controls .theme-btn { width: 40px; height: 40px; }
+  .nav-links li:last-child { margin-top: 18px; padding: 0 22px; }
+  .btn-nav { margin: 0; width: 100%; display: inline-flex; align-items: center; justify-content: center; text-align: center; }
 
   section[id] { scroll-margin-top: 72px; }
 

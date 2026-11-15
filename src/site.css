@@ -27,6 +27,7 @@
   --r: 10px;
   --r-lg: 16px;
   --max: 1200px;
+  color-scheme: light;
 }
 
 /* ── Dark theme ─────────────────────────────────────────── */
@@ -43,6 +44,7 @@
   --warm:      #FB923C;
   --line:      #1F2937;
   --line-dark: #374151;
+  color-scheme: dark;
 }
 
 /* ── Reset & Base ───────────────────────────────────────── */
@@ -58,7 +60,6 @@ body {
 img { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
 button { cursor: pointer; border: none; background: none; font: inherit; }
-body { transition: background-color .25s ease, color .25s ease; }
 
 /* ── Utilities ───────────────────────────────────────────── */
 .sr-only { position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0; }

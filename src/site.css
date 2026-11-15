@@ -254,16 +254,17 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 36px;
+  gap: clamp(12px, 1.4vw, 28px);
   list-style: none;
 }
 .nav-links a {
   font-family: var(--font-b);
-  font-size: .88rem;
+  font-size: .86rem;
   font-weight: 500;
   color: var(--text);
   position: relative;
   padding: 26px 0;
+  white-space: nowrap;
   transition: color .2s;
 }
 .nav-links a::after {
@@ -1118,6 +1119,16 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 /* ══════════════════════════════════════════════════════════
    RESPONSIVE
    ══════════════════════════════════════════════════════════ */
+
+@media (max-width: 1200px) and (min-width: 821px) {
+  .navbar { padding: 0 18px; }
+  .nav-links { gap: 13px; }
+  .nav-links a { font-size: .79rem; }
+  .nav-logo-text strong { font-size: .95rem; }
+  .nav-logo-text small { font-size: .6rem; }
+  .btn-nav { padding: 9px 14px; font-size: .78rem; gap: 6px; }
+  .lang-btn, .theme-btn { width: 30px; height: 30px; font-size: .68rem; }
+}
 
 @media (max-width: 1024px) {
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }

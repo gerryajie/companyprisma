@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback, useContext } from 'react'
 import { LangContext } from '../LangContext'
 import { content } from '../lang-data'
 import { clientCompanies, clientById } from '../client-companies'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { ChevronLeft, ChevronRight, PauseCircle, PlayCircle } from 'lucide-react'
 
 const testimonials = [
   { text: 'Prisma membantu PT PAMA mengubah data konsumsi listrik menjadi insight yang mudah dipantau secara real time—termasuk estimasi biaya dalam rupiah untuk mendukung keputusan operasional yang lebih cepat.', product: 'Dashboard Monitoring Konsumsi Listrik', company: 'PT PAMA', logo: 'pama' },
@@ -17,12 +17,14 @@ export default function Testimonials() {
   const { lang } = useContext(LangContext)
   const t = content[lang]
   const [current, setCurrent] = useState(0)
+  const [paused, setPaused] = useState(false)
   const go = useCallback((dir) => setCurrent((n) => (n + dir + testimonials.length) % testimonials.length), [])
 
   useEffect(() => {
+    if (paused) return
     const timer = setInterval(() => go(1), 7000)
     return () => clearInterval(timer)
-  }, [go])
+  }, [go, paused])
 
   const item = testimonials[current]
 
@@ -55,6 +57,7 @@ export default function Testimonials() {
               <button className="testi-btn" onClick={() => go(-1)} aria-label={t.testi_prev}><ChevronLeft size={20} /></button>
               <div className="testi-dots">{testimonials.map((_, i) => <button key={i} className={`testi-dot ${i === current ? 'active' : ''}`} onClick={() => setCurrent(i)} aria-label={`Testimoni ${i + 1}`} />)}</div>
               <button className="testi-btn" onClick={() => go(1)} aria-label={t.testi_next}><ChevronRight size={20} /></button>
+              <button className="testi-btn" onClick={() => setPaused((v) => !v)} aria-label={paused ? t.testi_play : t.testi_pause}>{paused ? <PlayCircle size={18} /> : <PauseCircle size={18} />}</button>
             </div>
           </div>
           <div className="testimonials-logos" aria-label={lang === 'id' ? 'Logo perusahaan klien' : 'Client company logos'}>

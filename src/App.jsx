@@ -9,11 +9,16 @@ import { LangContext } from './LangContext'
 import { ThemeProvider } from './ThemeContext'
 
 function App() {
-  const [lang, setLang] = useState('id')
+  const [lang, setLang] = useState(() => localStorage.getItem('pc-lang') || 'id')
+
+  const changeLang = (next) => {
+    setLang(next)
+    localStorage.setItem('pc-lang', next)
+  }
 
   return (
     <ThemeProvider>
-      <LangContext.Provider value={{ lang, setLang }}>
+      <LangContext.Provider value={{ lang, setLang: changeLang }}>
         <BrowserRouter>
           <Routes>
             <Route element={<Layout />}>

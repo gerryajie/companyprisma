@@ -51,6 +51,8 @@ export const content = {
     testimonials_lead: 'Kepercayaan klien adalah dasar kami dalam membangun kemitraan jangka panjang.',
     testi_prev: 'Sebelumnya',
     testi_next: 'Selanjutnya',
+    testi_pause: 'Hentikan putar otomatis',
+    testi_play: 'Lanjutkan putar otomatis',
     
     // Contact
     contact_h2: 'Siap Memulai Transformasi Digital?',
@@ -65,9 +67,6 @@ export const content = {
     footer_about_link: 'Tentang Kami',
     footer_careers: 'Tim & Karier',
     footer_contact: 'Kontak',
-    footer_address: 'Jl. Sudirman Kav. 50',
-    footer_city: 'Jakarta Selatan, 12190',
-    footer_hours: 'Senin–Jumat, 09:00–18:00 WIB',
     footer_copyright: '© 2026 PT Prisma Centra Nusantara. Hak cipta dilindungi undang-undang.',
   },
   en: {
@@ -122,6 +121,8 @@ export const content = {
     testimonials_lead: 'Client trust is the foundation for building long-term partnerships.',
     testi_prev: 'Previous',
     testi_next: 'Next',
+    testi_pause: 'Stop autoplay',
+    testi_play: 'Resume autoplay',
     
     // Contact
     contact_h2: 'Ready to Start Your Digital Transformation?',
@@ -136,9 +137,6 @@ export const content = {
     footer_about_link: 'About Us',
     footer_careers: 'Team & Careers',
     footer_contact: 'Contact',
-    footer_address: 'Jl. Sudirman Kav. 50',
-    footer_city: 'Jakarta Selatan, 12190',
-    footer_hours: 'Monday–Friday, 09:00–18:00 WIB',
     footer_copyright: '© 2026 PT Prisma Centra Nusantara. All rights reserved.',
   }
 }

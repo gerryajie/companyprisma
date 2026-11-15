@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { Mail, Phone, MapPin } from 'lucide-react'
 import { LangContext } from '../LangContext'
-import { phoneDisplay, phoneHref, emailDisplay } from '../contact-data.js'
+import { phoneDisplay, phoneHref, emailDisplay, emailHref, addressDisplay } from '../contact-data.js'
 import EmailModal from './EmailModal'
 import { useState } from 'react'
 
@@ -24,8 +24,8 @@ export default function Contact() {
 
         <div className="contact-row">
           <a className="contact-item" href={phoneHref} target="_blank" rel="noopener noreferrer"><Phone size={18} /> {phoneDisplay}</a>
-          <span className="contact-item"><Mail size={18} /> {emailDisplay}</span>
-          <span className="contact-item"><MapPin size={18} /> Karawaci, Tangerang, Banten</span>
+          <a className="contact-item" href={emailHref}><Mail size={18} /> {emailDisplay}</a>
+          <span className="contact-item"><MapPin size={18} /> {addressDisplay}</span>
         </div>
       </div>
       <EmailModal open={modalOpen} onClose={() => setModalOpen(false)} />

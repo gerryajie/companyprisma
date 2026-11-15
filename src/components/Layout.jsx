@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
-import TopBar from './TopBar'
 import Navbar from './Navbar'
 import Footer from './Footer'
 import FloatingWhatsApp from './FloatingWhatsApp'
+import RouteMeta from './RouteMeta'
 
 export default function Layout() {
   const { pathname, hash } = useLocation()
@@ -29,9 +29,10 @@ export default function Layout() {
 
   return (
     <>
-      <TopBar />
+      <RouteMeta />
+      <a href="#main-content" className="skip-link">Lewati ke konten utama</a>
       <Navbar />
-      <main>
+      <main id="main-content">
         <Outlet />
       </main>
       <Footer />

@@ -50,11 +50,7 @@ export default function NewsPage() {
     }
   }
 
-  useEffect(() => { load() }, []) // eslint-disable-line react-hooks/exhaustive-deps
-
-  useEffect(() => {
-    document.title = isEn ? 'Tech News | Prisma Centra Nusantara' : 'Berita Teknologi | Prisma Centra Nusantara'
-  }, [isEn])
+  useEffect(() => { load() }, []) // eslint-disable-line react-hooks/exhaustive-deps react(set-state-in-effect)
 
   const visible = useMemo(
     () => (filter === 'all' ? items : items.filter((item) => item.source === filter)),

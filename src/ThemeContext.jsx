@@ -1,3 +1,4 @@
+/* eslint-disable react(only-export-components) */
 import { createContext, useContext, useEffect, useState } from 'react'
 
 export const ThemeContext = createContext()
@@ -14,7 +15,7 @@ export function ThemeProvider({ children }) {
         window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
       )
     }
-  }, [])
+  }, []) // eslint-disable-line react(set-state-in-effect)
 
   useEffect(() => {
     if (!theme) return

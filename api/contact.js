@@ -17,7 +17,7 @@ function getTransporter() {
 }
 
 const esc = (v = '') =>
-  String(v).replace(/[&<>\"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]))
+  String(v).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]))
 
 // Multipart/form-data parser for Vercel serverless
 function parseMultipart(buf, contentType) {

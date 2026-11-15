@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react'
+import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 import { LangContext } from '../LangContext'
@@ -8,12 +8,6 @@ import Contact from '../components/Contact'
 export default function ProjectsPage() {
   const { lang } = useContext(LangContext)
   const isEn = lang === 'en'
-
-  useEffect(() => {
-    document.title = isEn
-      ? 'Projects | Prisma Centra Nusantara'
-      : 'Proyek | Prisma Centra Nusantara'
-  }, [isEn])
 
   return (
     <>

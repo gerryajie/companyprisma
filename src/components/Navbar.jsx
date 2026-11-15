@@ -47,7 +47,7 @@ export default function Navbar() {
     return () => { document.body.style.overflow = '' }
   }, [open])
 
-  useEffect(() => { setOpen(false) }, [location.pathname, location.hash])
+  useEffect(() => { setOpen(false) }, [location.pathname, location.hash]) // eslint-disable-line react(set-state-in-effect)
 
   const t = content[lang]
   const isActive = (to) => {
@@ -86,11 +86,17 @@ export default function Navbar() {
         </div>
       </Link>
 
-      <button className="nav-toggle" aria-label={t.nav_toggle_aria} onClick={() => setOpen((v) => !v)}>
+      <button
+        className="nav-toggle"
+        aria-label={t.nav_toggle_aria}
+        aria-expanded={open}
+        aria-controls="primary-navigation"
+        onClick={() => setOpen((v) => !v)}
+      >
         {open ? <X size={20} /> : <Menu size={20} />}
       </button>
 
-      <nav>
+      <nav id="primary-navigation">
         <ul className={`nav-links ${open ? 'open' : ''}`}>
           {links.map((l) => (
             <li key={l.to}>
@@ -114,8 +120,8 @@ export default function Navbar() {
             <button
               className="theme-btn"
               onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-              title={theme === 'dark' ? 'Light mode' : 'Dark mode'}
-              aria-label="Toggle dark mode"
+              title={theme === 'dark' ? (lang === 'id' ? 'Mode terang' : 'Light mode') : (lang === 'id' ? 'Mode gelap' : 'Dark mode')}
+              aria-label={theme === 'dark' ? (lang === 'id' ? 'Aktifkan mode terang' : 'Enable light mode') : (lang === 'id' ? 'Aktifkan mode gelap' : 'Enable dark mode')}
             >
               {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
             </button>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { FileText, Mail, Send, Upload, User, X } from 'lucide-react'
 import { emailDisplay } from '../contact-data.js'
+import useModalA11y from '../useModalA11y'
 
 export default function CareerApplyModal({ open, onClose, role, lang = 'id' }) {
   const [form, setForm] = useState({ name: '', email: '', phone: '', message: '', botcheck: '' })
@@ -9,6 +10,7 @@ export default function CareerApplyModal({ open, onClose, role, lang = 'id' }) {
   const [done, setDone] = useState(false)
   const [error, setError] = useState('')
   const isEn = lang === 'en'
+  const boxRef = useModalA11y(open, onClose)
 
   useEffect(() => {
     if (open) {
@@ -18,7 +20,7 @@ export default function CareerApplyModal({ open, onClose, role, lang = 'id' }) {
       setDone(false)
       setError('')
     }
-  }, [open, role])
+  }, [open, role]) // eslint-disable-line react(set-state-in-effect)
 
   if (!open) return null
 
@@ -74,8 +76,15 @@ export default function CareerApplyModal({ open, onClose, role, lang = 'id' }) {
 
   return (
     <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-box" onClick={(e) => e.stopPropagation()}>
-        <button className="modal-close" onClick={onClose} aria-label="Close"><X size={20} /></button>
+      <div
+        className="modal-box"
+        ref={boxRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="career-modal-title"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button className="modal-close" onClick={onClose} aria-label={isEn ? 'Close dialog' : 'Tutup dialog'}><X size={20} /></button>
         {done ? (
           <div className="modal-success">
             <div className="success-icon">✓</div>
@@ -88,20 +97,20 @@ export default function CareerApplyModal({ open, onClose, role, lang = 'id' }) {
             <div className="modal-header">
               <Mail size={22} style={{ color: 'var(--accent)' }} />
               <div>
-                <h3 style={{ margin: 0, fontSize: '1.1rem' }}>{isEn ? 'Apply for' : 'Lamar posisi'} {role}</h3>
+                <h3 id="career-modal-title" style={{ margin: 0, fontSize: '1.1rem' }}>{isEn ? 'Apply for' : 'Lamar posisi'} {role}</h3>
                 <p style={{ margin: '4px 0 0', fontSize: '.8rem', color: 'var(--ink-soft)' }}>{emailDisplay}</p>
               </div>
             </div>
             <form onSubmit={submit} className="modal-form">
               <div className="form-row">
-                <div className="form-group"><label><User size={14} /> {isEn ? 'Full Name *' : 'Nama Lengkap *'}</label><input required name="name" value={form.name} onChange={change} /></div>
-                <div className="form-group"><label><Mail size={14} /> Email *</label><input required type="email" name="email" value={form.email} onChange={change} /></div>
+                <div className="form-group"><label htmlFor="career-name"><User size={14} /> {isEn ? 'Full Name *' : 'Nama Lengkap *'}</label><input id="career-name" required name="name" value={form.name} onChange={change} autoComplete="name" /></div>
+                <div className="form-group"><label htmlFor="career-email"><Mail size={14} /> Email *</label><input id="career-email" required type="email" name="email" value={form.email} onChange={change} autoComplete="email" /></div>
               </div>
-              <div className="form-group"><label>{isEn ? 'Phone Number' : 'No. Telepon'}</label><input name="phone" value={form.phone} onChange={change} /></div>
-              <div className="form-group"><label><FileText size={14} /> {isEn ? 'CV / Resume *' : 'CV / Resume *'}</label><input required type="file" accept=".pdf,.doc,application/pdf,application/msword" onChange={chooseFile} /><small className="file-help"><Upload size={13} /> PDF atau DOC · maks. 4 MB</small></div>
-              <div className="form-group"><label>{isEn ? 'Message' : 'Pesan'}</label><textarea name="message" rows={3} value={form.message} onChange={change} placeholder={isEn ? 'Tell us briefly about yourself...' : 'Ceritakan singkat tentang diri Anda...'} /></div>
+              <div className="form-group"><label htmlFor="career-phone">{isEn ? 'Phone Number' : 'No. Telepon'}</label><input id="career-phone" name="phone" value={form.phone} onChange={change} autoComplete="tel" /></div>
+              <div className="form-group"><label htmlFor="career-file"><FileText size={14} /> {isEn ? 'CV / Resume *' : 'CV / Resume *'}</label><input id="career-file" required type="file" accept=".pdf,.doc,application/pdf,application/msword" onChange={chooseFile} /><small className="file-help"><Upload size={13} /> PDF atau DOC · maks. 4 MB</small></div>
+              <div className="form-group"><label htmlFor="career-message">{isEn ? 'Message' : 'Pesan'}</label><textarea id="career-message" name="message" rows={3} value={form.message} onChange={change} placeholder={isEn ? 'Tell us briefly about yourself...' : 'Ceritakan singkat tentang diri Anda...'} /></div>
               <input type="text" name="botcheck" value={form.botcheck} onChange={change} tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ position: 'absolute', left: '-9999px', opacity: 0, height: 0, width: 0 }} />
-              {error && <p className="form-error">{error}</p>}
+              <p className="form-error" role="alert" aria-live="polite">{error}</p>
               <button type="submit" className="btn-submit" disabled={sending}><Send size={16} /> {sending ? (isEn ? 'Sending...' : 'Mengirim...') : (isEn ? 'Send Application' : 'Kirim Lamaran')}</button>
             </form>
           </>

@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from 'react'
 import { X, Mail, User, Building2, Phone, MessageSquare, Send } from 'lucide-react'
 import { LangContext } from '../LangContext'
 import { emailHref, emailDisplay } from '../contact-data.js'
+import useModalA11y from '../useModalA11y'
 
 export default function EmailModal({ open, onClose }) {
   const { lang } = useContext(LangContext)
@@ -9,6 +10,7 @@ export default function EmailModal({ open, onClose }) {
   const [done, setDone] = useState(false)
   const [sending, setSending] = useState(false)
   const [error, setError] = useState('')
+  const boxRef = useModalA11y(open, onClose)
 
   useEffect(() => {
     if (open) {
@@ -16,7 +18,7 @@ export default function EmailModal({ open, onClose }) {
       setError('')
       setForm({ name: '', company: '', email: '', phone: '', subject: '', message: '', botcheck: '' })
     }
-  }, [open])
+  }, [open]) // eslint-disable-line react(set-state-in-effect)
 
   const handleChange = (e) => setForm((f) => ({ ...f, [e.target.name]: e.target.value }))
 
@@ -56,8 +58,15 @@ export default function EmailModal({ open, onClose }) {
 
   return (
     <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-box" onClick={(e) => e.stopPropagation()}>
-        <button className="modal-close" onClick={onClose} aria-label="Close">
+      <div
+        className="modal-box"
+        ref={boxRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="email-modal-title"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button className="modal-close" onClick={onClose} aria-label={lang === 'id' ? 'Tutup dialog' : 'Close dialog'}>
           <X size={20} />
         </button>
 
@@ -66,7 +75,7 @@ export default function EmailModal({ open, onClose }) {
             <div className="modal-header">
               <Mail size={22} style={{ color: 'var(--accent)' }} />
               <div>
-                <h3 style={{ margin: 0, fontSize: '1.1rem' }}>{lang === 'id' ? 'Kirim Email kepada Kami' : 'Email Us'}</h3>
+                <h3 id="email-modal-title" style={{ margin: 0, fontSize: '1.1rem' }}>{lang === 'id' ? 'Kirim Email kepada Kami' : 'Email Us'}</h3>
                 <p style={{ margin: '4px 0 0', fontSize: '.8rem', color: 'var(--ink-soft)' }}>
                   {lang === 'id'
                     ? 'Isi form di bawah dan tim kami akan merespons dalam 1 hari kerja.'
@@ -78,39 +87,39 @@ export default function EmailModal({ open, onClose }) {
             <form onSubmit={handleSubmit} className="modal-form">
               <div className="form-row">
                 <div className="form-group">
-                  <label><User size={14} /> {t.name}</label>
-                  <input required name="name" value={form.name} onChange={handleChange} placeholder={lang === 'id' ? 'John Doe' : 'isikan nama'} />
+                  <label htmlFor="contact-name"><User size={14} /> {t.name}</label>
+                  <input id="contact-name" required name="name" value={form.name} onChange={handleChange} placeholder={lang === 'id' ? 'John Doe' : 'John Doe'} autoComplete="name" />
                 </div>
                 <div className="form-group">
-                  <label><Building2 size={14} /> {t.company}</label>
-                  <input name="company" value={form.company} onChange={handleChange} placeholder={lang === 'id' ? 'PT Contoh' : 'isikan nama perusahaan'} />
+                  <label htmlFor="contact-company"><Building2 size={14} /> {t.company}</label>
+                  <input id="contact-company" name="company" value={form.company} onChange={handleChange} placeholder={lang === 'id' ? 'PT Contoh' : 'Your company'} autoComplete="organization" />
                 </div>
               </div>
 
               <div className="form-row">
                 <div className="form-group">
-                  <label><Mail size={14} /> {t.email}</label>
-                  <input required type="email" name="email" value={form.email} onChange={handleChange} placeholder="email@perusahaan.com" />
+                  <label htmlFor="contact-email"><Mail size={14} /> {t.email}</label>
+                  <input id="contact-email" required type="email" name="email" value={form.email} onChange={handleChange} placeholder="email@perusahaan.com" autoComplete="email" />
                 </div>
                 <div className="form-group">
-                  <label><Phone size={14} /> {t.phone}</label>
-                  <input name="phone" value={form.phone} onChange={handleChange} placeholder="+62 812 xxxx xxxx" />
+                  <label htmlFor="contact-phone"><Phone size={14} /> {t.phone}</label>
+                  <input id="contact-phone" name="phone" value={form.phone} onChange={handleChange} placeholder="+62 812 xxxx xxxx" autoComplete="tel" />
                 </div>
               </div>
 
               <div className="form-group">
-                <label><MessageSquare size={14} /> {t.subject}</label>
-                <input name="subject" value={form.subject} onChange={handleChange} placeholder={lang === 'id' ? 'Diskusi proyek sistem keamanan...' : 'Project discussion...'} />
+                <label htmlFor="contact-subject"><MessageSquare size={14} /> {t.subject}</label>
+                <input id="contact-subject" name="subject" value={form.subject} onChange={handleChange} placeholder={lang === 'id' ? 'Diskusi proyek sistem keamanan...' : 'Project discussion...'} />
               </div>
 
               <div className="form-group">
-                <label>{t.message}</label>
-                <textarea required name="message" rows={4} value={form.message} onChange={handleChange} placeholder={lang === 'id' ? 'Ceritakan kebutuhan proyek Anda...' : 'Tell us about your project needs...'} />
+                <label htmlFor="contact-message">{t.message}</label>
+                <textarea id="contact-message" required name="message" rows={4} value={form.message} onChange={handleChange} placeholder={lang === 'id' ? 'Ceritakan kebutuhan proyek Anda...' : 'Tell us about your project needs...'} />
               </div>
 
               <input type="text" name="botcheck" value={form.botcheck} onChange={handleChange} tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ position: 'absolute', left: '-9999px', opacity: 0, height: 0, width: 0 }} />
 
-              {error && <p className="form-error">{error}</p>}
+              <p className="form-error" role="alert" aria-live="polite">{error}</p>
 
               <button type="submit" className="btn-submit" disabled={sending}>
                 <Send size={16} /> {sending ? (lang === 'id' ? 'Mengirim...' : 'Sending...') : t.send}

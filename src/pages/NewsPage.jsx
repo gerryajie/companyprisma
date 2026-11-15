@@ -1,12 +1,12 @@
 import { useContext, useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowUpRight, Clock3, ExternalLink, MessageSquare, RefreshCw, TrendingUp } from 'lucide-react'
+import { Clock3, ExternalLink, RefreshCw, TrendingUp } from 'lucide-react'
 import { LangContext } from '../LangContext'
 import Contact from '../components/Contact'
 
 const filters = [
   { key: 'all', labelId: 'Semua', labelEn: 'All' },
-  { key: 'hackernews', labelId: 'Hacker News', labelEn: 'Hacker News' },
+  { key: 'techcrunch', labelId: 'Tech News', labelEn: 'Tech News' },
   { key: 'devto', labelId: 'DEV Community', labelEn: 'DEV Community' },
 ]
 
@@ -73,8 +73,8 @@ export default function NewsPage() {
           <span className="section-label">{isEn ? 'Live Feed' : 'Umpan Langsung'}</span>
           <h1>{isEn ? 'What Is Happening in Technology' : 'Apa yang Sedang Terjadi di Teknologi'}</h1>
           <p>{isEn
-            ? 'Curated headlines from public technology APIs — Hacker News and DEV Community — refreshed automatically.'
-            : 'Kurasi berita teknologi dari API publik — Hacker News dan DEV Community — diperbarui otomatis.'}</p>
+            ? 'Curated headlines from public technology APIs — TechCrunch and DEV Community — refreshed automatically.'
+            : 'Kurasi berita teknologi dari API publik — TechCrunch dan DEV Community — diperbarui otomatis.'}</p>
           <div className="page-hero-actions">
             <button type="button" className="btn btn-primary" onClick={load} disabled={loading}>
               <RefreshCw size={16} className={loading ? 'spin' : undefined} /> {loading ? (isEn ? 'Loading...' : 'Memuat...') : (isEn ? 'Refresh' : 'Muat Ulang')}
@@ -115,42 +115,45 @@ export default function NewsPage() {
           )}
 
           {!error && loading && (
-            <div className="news-grid">
-              {Array.from({ length: 6 }).map((_, i) => (
-                <div className="news-card news-skeleton" key={i}>
-                  <div className="sk-line sk-sm" />
+            <div className="news-list">
+              {Array.from({ length: 8 }).map((_, i) => (
+                <div className="news-row news-skeleton" key={i}>
+                  <div className="sk-line sk-sm" style={{ width: '18%' }} />
                   <div className="sk-line sk-lg" />
-                  <div className="sk-line sk-md" />
                 </div>
               ))}
             </div>
           )}
 
           {!error && !loading && (
-            <div className="news-grid">
-              {visible.map((item) => (
-                <article className="news-card" key={item.id}>
-                  <div className="news-card-top">
-                    <span className={`news-source source-${item.source}`}>{item.sourceLabel}</span>
+            <div className="news-list">
+              {visible.map((item, idx) => (
+                <a
+                  key={item.id}
+                  href={item.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="news-row"
+                >
+                  <span className="news-index">{String(idx + 1).padStart(2, '0')}</span>
+                  <div className="news-row-body">
+                    <div className="news-row-head">
+                      <h3>
+                        {item.title} <ExternalLink size={13} />
+                      </h3>
+                      <span className={`news-source source-${item.source}`}>{item.sourceLabel}</span>
+                    </div>
+                    {item.summary && <p>{item.summary}</p>}
+                    <div className="news-tags">
+                      {item.tags?.slice(0, 3).map((tag) => <span key={tag}>{tag}</span>)}
+                    </div>
+                  </div>
+                  <div className="news-row-meta">
+                    {item.points > 0 && <span className="news-stat"><TrendingUp size={14} /> {item.points}</span>}
+                    {item.comments > 0 && <span className="news-stat">{item.comments}</span>}
                     <span className="news-time"><Clock3 size={13} /> {timeAgo(item.publishedAt, isEn)}</span>
                   </div>
-                  <h3>
-                    <a href={item.url} target="_blank" rel="noopener noreferrer">
-                      {item.title} <ExternalLink size={14} />
-                    </a>
-                  </h3>
-                  {item.summary && <p>{item.summary}</p>}
-                  <div className="news-tags">
-                    {item.tags?.slice(0, 3).map((tag) => <span key={tag}>{tag}</span>)}
-                  </div>
-                  <div className="news-footer">
-                    <span className="news-stat"><TrendingUp size={14} /> {item.points}</span>
-                    <a className="news-stat" href={item.discussion} target="_blank" rel="noopener noreferrer">
-                      <MessageSquare size={14} /> {item.comments}
-                    </a>
-                    <span className="news-author">{item.author}</span>
-                  </div>
-                </article>
+                </a>
               ))}
             </div>
           )}
@@ -161,11 +164,11 @@ export default function NewsPage() {
 
           <p className="news-credit">
             {isEn ? 'Data from public APIs: ' : 'Data dari API publik: '}
-            <a href="https://hn.algolia.com/api" target="_blank" rel="noopener noreferrer">Hacker News (Algolia)</a>
+            <a href="https://techcrunch.com/wp-json/wp/v2/" target="_blank" rel="noopener noreferrer">TechCrunch (REST API)</a>
             {' · '}
             <a href="https://developers.forem.com/api" target="_blank" rel="noopener noreferrer">DEV Community</a>
             {' · '}
-            <a href="/proyek">{isEn ? 'See our work' : 'Lihat proyek kami'} <ArrowUpRight size={12} /></a>
+            <a href="/proyek">{isEn ? 'See our work' : 'Lihat proyek kami'} <ExternalLink size={12} /></a>
           </p>
         </div>
       </section>

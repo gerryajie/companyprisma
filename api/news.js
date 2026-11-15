@@ -1,10 +1,10 @@
-// Agregator berita teknologi dari API publik tanpa API key.
-// Sumber: Hacker News (Algolia API) + DEV Community (dev.to API)
+// Agregator berita teknologi public open API — tanpa API key berbayar.
+// Sumber: TechCrunch (WordPress REST API) + DEV Community (tag news).
 
 const CACHE_TTL = 10 * 60 * 1000 // 10 menit
 let cache = { at: 0, payload: null }
 
-async function getJson(url, timeout = 8000) {
+async function getJson(url, timeout = 15000) {
   const controller = new AbortController()
   const timer = setTimeout(() => controller.abort(), timeout)
   try {
@@ -19,23 +19,33 @@ async function getJson(url, timeout = 8000) {
   }
 }
 
-function normalizeHn(hits = []) {
-  return hits
-    .filter((hit) => hit.title)
-    .map((hit) => ({
-      id: `hn-${hit.objectID}`,
-      title: hit.title,
-      url: hit.url || `https://news.ycombinator.com/item?id=${hit.objectID}`,
-      discussion: `https://news.ycombinator.com/item?id=${hit.objectID}`,
-      source: 'hackernews',
-      sourceLabel: 'Hacker News',
-      author: hit.author,
-      points: hit.points || 0,
-      comments: hit.num_comments || 0,
-      publishedAt: hit.created_at || null,
-      summary: null,
-      image: null,
-      tags: ['Tech'],
+function stripHtml(html) {
+  return html
+    .replace(/<[^>]+>/g, '')
+    .replace(/&#39;/g, "'")
+    .replace(/&#8217;/g, "'")
+    .replace(/&amp;/g, '&')
+    .replace(/\s+/g, ' ')
+    .trim()
+}
+
+function normalizeTechCrunch(posts = []) {
+  return posts
+    .filter((p) => p.title?.rendered && p.link)
+    .map((p) => ({
+      id: `tc-${p.id}`,
+      title: p.title.rendered.trim(),
+      url: p.link,
+      discussion: p.link,
+      source: 'techcrunch',
+      sourceLabel: 'Tech News',
+      author: '',
+      points: 0,
+      comments: 0,
+      publishedAt: p.date,
+      summary: p.excerpt?.rendered ? stripHtml(p.excerpt.rendered) : null,
+      image: p._embedded?.['wp:featuredmedia']?.[0]?.source_url || null,
+      tags: (p._embedded?.['wp:term'] || []).flat().map((t) => t.name).slice(0, 3),
     }))
 }
 
@@ -70,14 +80,14 @@ export default async function handler(req, res) {
   }
 
   const results = await Promise.allSettled([
-    getJson('https://hn.algolia.com/api/v1/search?tags=front_page&hitsPerPage=24'),
-    getJson('https://dev.to/api/articles?per_page=15&top=7'),
+    getJson('https://techcrunch.com/wp-json/wp/v2/posts?per_page=24&_embed=1'),
+    getJson('https://dev.to/api/articles?tag=news&per_page=15&top=7'),
   ])
 
-  const hn = results[0].status === 'fulfilled' ? normalizeHn(results[0].value?.hits) : []
+  const tc = results[0].status === 'fulfilled' ? normalizeTechCrunch(results[0].value) : []
   const devto = results[1].status === 'fulfilled' ? normalizeDevTo(results[1].value) : []
 
-  const items = [...hn, ...devto]
+  const items = [...tc, ...devto]
     .sort((a, b) => new Date(b.publishedAt || 0) - new Date(a.publishedAt || 0))
     .slice(0, 30)
 
@@ -88,7 +98,7 @@ export default async function handler(req, res) {
   const payload = {
     items,
     fetchedAt: new Date().toISOString(),
-    sources: ['Hacker News', 'DEV Community'],
+    sources: ['Tech News', 'DEV Community'],
   }
   cache = { at: now, payload }
 

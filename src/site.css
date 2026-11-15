@@ -1143,7 +1143,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   .careers-grid { grid-template-columns: repeat(2, 1fr); }
   .news-list { gap: 8px; }
 
-  .nav-toggle { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 8px; border: 1px solid var(--line); color: var(--ink); background: transparent; }
+  .nav-toggle { display: inline-flex !important; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 8px; border: 1px solid var(--line); color: var(--ink); background: transparent; }
   .nav-links {
     position: fixed; top: 72px; left: 0; right: 0; bottom: 0;
     height: calc(100dvh - 72px);

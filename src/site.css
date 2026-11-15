@@ -812,6 +812,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .testimonials-logo img { display: block; max-width: 100%; max-height: 56px; width: auto; height: auto; object-fit: contain; opacity: .9; }
 .testimonials-logo img[src$='/dsv.png'] { max-height: 34px; }
 .testimonials-logo img[src$='/mister-pancong.png'] { max-height: 68px; }
+.testimonials-logo img[src$='/penduduk-jajan.png'] { max-height: 68px; }
 .testimonials-logo:hover { border-color: var(--accent); }
 .testimonials-logo:hover img { opacity: 1; }
 

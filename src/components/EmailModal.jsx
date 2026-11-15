@@ -5,33 +5,39 @@ import { emailHref, emailDisplay } from '../contact-data.js'
 
 export default function EmailModal({ open, onClose }) {
   const { lang } = useContext(LangContext)
-  const [form, setForm] = useState({ name: '', company: '', email: '', phone: '', subject: '', message: '' })
+  const [form, setForm] = useState({ name: '', company: '', email: '', phone: '', subject: '', message: '', botcheck: '' })
   const [done, setDone] = useState(false)
+  const [sending, setSending] = useState(false)
+  const [error, setError] = useState('')
 
   useEffect(() => {
     if (open) {
       setDone(false)
-      setForm({ name: '', company: '', email: '', phone: '', subject: '', message: '' })
+      setError('')
+      setForm({ name: '', company: '', email: '', phone: '', subject: '', message: '', botcheck: '' })
     }
   }, [open])
 
   const handleChange = (e) => setForm((f) => ({ ...f, [e.target.name]: e.target.value }))
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    const subject = form.subject || `Konsultasi proyek — ${form.name}`
-    const lines = [`Nama: ${form.name}`]
-    if (form.company) lines.push(`Perusahaan: ${form.company}`)
-    lines.push(`Email: ${form.email}`)
-    if (form.phone) lines.push(`Telepon: ${form.phone}`)
-    lines.push('', form.message)
-    const body = lines.join('\n')
-    const href = `${emailHref}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
-    const a = document.createElement('a')
-    a.href = href
-    a.rel = 'noopener'
-    a.click()
-    setDone(true)
+    setSending(true)
+    setError('')
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok || !data.ok) throw new Error(data.error || (lang === 'id' ? 'Gagal mengirim pesan.' : 'Failed to send message.'))
+      setDone(true)
+    } catch (err) {
+      setError(err.message || (lang === 'id' ? 'Terjadi kesalahan.' : 'Something went wrong.'))
+    } finally {
+      setSending(false)
+    }
   }
 
   if (!open) return null
@@ -44,7 +50,7 @@ export default function EmailModal({ open, onClose }) {
     subject: lang === 'id' ? 'Subjek' : 'Subject',
     message: lang === 'id' ? 'Pesan *' : 'Message *',
     send: lang === 'id' ? 'Kirim Pesan' : 'Send Message',
-    sent: lang === 'id' ? 'Aplikasi email Anda sudah dibuka dengan isi pesan ini. Tinggal tekan kirim — tim kami merespons dalam 1 hari kerja.' : 'Your email app has been opened with this message. Just hit send — our team responds within one business day.',
+    sent: lang === 'id' ? 'Pesan Anda sudah masuk ke inbox tim kami. Kami merespons dalam 1 hari kerja.' : 'Your message has reached our inbox. We respond within one business day.',
     close: lang === 'id' ? 'Tutup' : 'Close',
   }
 
@@ -102,15 +108,19 @@ export default function EmailModal({ open, onClose }) {
                 <textarea required name="message" rows={4} value={form.message} onChange={handleChange} placeholder={lang === 'id' ? 'Ceritakan kebutuhan proyek Anda...' : 'Tell us about your project needs...'} />
               </div>
 
-              <button type="submit" className="btn-submit">
-                <Send size={16} /> {t.send}
+              <input type="text" name="botcheck" value={form.botcheck} onChange={handleChange} tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ position: 'absolute', left: '-9999px', opacity: 0, height: 0, width: 0 }} />
+
+              {error && <p className="form-error">{error}</p>}
+
+              <button type="submit" className="btn-submit" disabled={sending}>
+                <Send size={16} /> {sending ? (lang === 'id' ? 'Mengirim...' : 'Sending...') : t.send}
               </button>
             </form>
           </>
         ) : (
           <div className="modal-success">
             <div className="success-icon">✓</div>
-            <h3 style={{ marginTop: 16 }}>{lang === 'id' ? 'Email Siap Dikirim' : 'Email Ready to Send'}</h3>
+            <h3 style={{ marginTop: 16 }}>{lang === 'id' ? 'Pesan Terkirim!' : 'Message Sent!'}</h3>
             <p>{t.sent}</p>
             <p style={{ fontSize: '.82rem', marginTop: 10 }}>
               {lang === 'id' ? 'Tidak terbuka otomatis? Kirim manual ke ' : "Didn't open? Send manually to "}

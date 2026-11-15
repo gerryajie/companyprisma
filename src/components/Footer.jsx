@@ -2,11 +2,11 @@ import { useContext } from 'react'
 import { Globe, MessageCircle, Send } from 'lucide-react'
 import { LangContext } from '../LangContext'
 import { content } from '../lang-data'
-import { phoneHref, phoneDisplay, emailHref, emailDisplay } from '../contact-data.js'
+import { phoneHref, phoneDisplay, emailHref, emailDisplay, waHref } from '../contact-data.js'
 
 const socials = [
   { icon: Globe, labelId: 'Website', labelEn: 'Website', href: '#' },
-  { icon: MessageCircle, labelId: 'WhatsApp', labelEn: 'WhatsApp', href: '#' },
+  { icon: MessageCircle, labelId: 'WhatsApp', labelEn: 'WhatsApp', href: waHref },
   { icon: Send, labelId: 'Telegram', labelEn: 'Telegram', href: '#' },
 ]
 
@@ -62,9 +62,8 @@ export default function Footer() {
             <h4>{lang === 'id' ? 'Kontak' : 'Contact'}</h4>
             <ul>
               <li><a href={emailHref}>{emailDisplay}</a></li>
-              <li><a href={phoneHref}>{phoneDisplay}</a></li>
-              <li>Jl. Sudirman Kav. 50<br/>Jakarta Selatan, 12190</li>
-              <li>{lang === 'id' ? 'Senin–Jumat, 09:00–18:00 WIB' : 'Monday–Friday, 09:00–18:00 WIB'}</li>
+              <li><a href={phoneHref} target="_blank" rel="noopener noreferrer">{phoneDisplay}</a></li>
+              <li>Padasuka 1 No. 27, Karawaci, Tangerang, Banten</li>
             </ul>
           </div>
         </div>

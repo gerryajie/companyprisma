@@ -10,6 +10,7 @@ import About from './components/About'
 import Testimonials from './components/Testimonials'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
+import FloatingWhatsApp from './components/FloatingWhatsApp'
 import { LangContext } from './LangContext'
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
       <Testimonials />
       <Contact />
       <Footer />
+      <FloatingWhatsApp />
     </LangContext.Provider>
   )
 }

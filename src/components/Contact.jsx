@@ -18,8 +18,8 @@ export default function Contact() {
             ? 'Konsultasikan kebutuhan IT perusahaan Anda secara gratis. Tim kami merespons dalam waktu satu hari kerja.'
             : 'Get a free consultation for your company\u2019s IT needs. Our team responds within one business day.'}
         </p>
-        <button className="btn btn-primary" style={{ fontSize: '.93rem', padding: '14px 30px' }} onClick={() => setModalOpen(true)}>
-          <Mail size={17} /> {lang === 'id' ? 'Kirim Email kepada Kami' : 'Email Us'}
+        <button className="btn btn-primary btn-contact" onClick={() => setModalOpen(true)}>
+          <Mail size={18} /> {lang === 'id' ? 'Kirim Email kepada Kami' : 'Email Us'}
         </button>
 
         <div className="contact-row">

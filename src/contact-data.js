@@ -10,5 +10,5 @@ export const waDisplay = '0' + parts.slice(1).join('')
 export const phoneHref = waHref
 export const phoneDisplay = '+62 ' + parts.slice(1).join(' ')
 
-export const emailHref = 'mailto:hello@prismacentra.id'
-export const emailDisplay = 'hello@prismacentra.id'
+export const emailHref = 'mailto:prismanextech@gmail.com'
+export const emailDisplay = 'prismanextech@gmail.com'

@@ -1,43 +1,37 @@
 import { useState, useEffect, useContext } from 'react'
 import { X, Mail, User, Building2, Phone, MessageSquare, Send } from 'lucide-react'
 import { LangContext } from '../LangContext'
+import { emailHref, emailDisplay } from '../contact-data.js'
 
 export default function EmailModal({ open, onClose }) {
   const { lang } = useContext(LangContext)
   const [form, setForm] = useState({ name: '', company: '', email: '', phone: '', subject: '', message: '' })
-  const [sending, setSending] = useState(false)
   const [done, setDone] = useState(false)
-  const [error, setError] = useState('')
 
   useEffect(() => {
     if (open) {
       setDone(false)
-      setError('')
       setForm({ name: '', company: '', email: '', phone: '', subject: '', message: '' })
     }
   }, [open])
 
   const handleChange = (e) => setForm((f) => ({ ...f, [e.target.name]: e.target.value }))
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault()
-    setSending(true)
-    setError('')
-    try {
-      const apiBase = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001'
-      const res = await fetch(`${apiBase}/api/contact`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
-      })
-      const data = await res.json()
-      if (!res.ok) throw new Error(data.error || 'Gagal')
-      setDone(true)
-    } catch (err) {
-      setError(err.message || 'Terjadi kesalahan.')
-    } finally {
-      setSending(false)
-    }
+    const subject = form.subject || `Konsultasi proyek — ${form.name}`
+    const lines = [`Nama: ${form.name}`]
+    if (form.company) lines.push(`Perusahaan: ${form.company}`)
+    lines.push(`Email: ${form.email}`)
+    if (form.phone) lines.push(`Telepon: ${form.phone}`)
+    lines.push('', form.message)
+    const body = lines.join('\n')
+    const href = `${emailHref}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+    const a = document.createElement('a')
+    a.href = href
+    a.rel = 'noopener'
+    a.click()
+    setDone(true)
   }
 
   if (!open) return null
@@ -50,7 +44,7 @@ export default function EmailModal({ open, onClose }) {
     subject: lang === 'id' ? 'Subjek' : 'Subject',
     message: lang === 'id' ? 'Pesan *' : 'Message *',
     send: lang === 'id' ? 'Kirim Pesan' : 'Send Message',
-    sent: lang === 'id' ? 'Pesan berhasil dikirim! Tim kami akan segera menghubungi Anda.' : 'Message sent! Our team will contact you shortly.',
+    sent: lang === 'id' ? 'Aplikasi email Anda sudah dibuka dengan isi pesan ini. Tinggal tekan kirim — tim kami merespons dalam 1 hari kerja.' : 'Your email app has been opened with this message. Just hit send — our team responds within one business day.',
     close: lang === 'id' ? 'Tutup' : 'Close',
   }
 
@@ -108,18 +102,20 @@ export default function EmailModal({ open, onClose }) {
                 <textarea required name="message" rows={4} value={form.message} onChange={handleChange} placeholder={lang === 'id' ? 'Ceritakan kebutuhan proyek Anda...' : 'Tell us about your project needs...'} />
               </div>
 
-              {error && <p className="form-error">{error}</p>}
-
-              <button type="submit" className="btn-submit" disabled={sending}>
-                <Send size={16} /> {sending ? (lang === 'id' ? 'Mengirim...' : 'Sending...') : t.send}
+              <button type="submit" className="btn-submit">
+                <Send size={16} /> {t.send}
               </button>
             </form>
           </>
         ) : (
           <div className="modal-success">
             <div className="success-icon">✓</div>
-            <h3 style={{ marginTop: 16 }}>{lang === 'id' ? 'Pesan Terkirim!' : 'Message Sent!'}</h3>
+            <h3 style={{ marginTop: 16 }}>{lang === 'id' ? 'Email Siap Dikirim' : 'Email Ready to Send'}</h3>
             <p>{t.sent}</p>
+            <p style={{ fontSize: '.82rem', marginTop: 10 }}>
+              {lang === 'id' ? 'Tidak terbuka otomatis? Kirim manual ke ' : "Didn't open? Send manually to "}
+              <a href={emailHref} style={{ color: 'var(--accent)', fontWeight: 600 }}>{emailDisplay}</a>
+            </p>
             <button className="btn-submit" onClick={onClose}>{t.close}</button>
           </div>
         )}

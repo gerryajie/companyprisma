@@ -1,18 +1,9 @@
 import { useState } from 'react'
-import TopBar from './components/TopBar'
-import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import ClientsMarquee from './components/ClientsMarquee'
-import Services from './components/Services'
-import Industries from './components/Industries'
-import Process from './components/Process'
-import About from './components/About'
-import Testimonials from './components/Testimonials'
-import Projects from './components/Projects'
-import Careers from './components/Careers'
-import Contact from './components/Contact'
-import Footer from './components/Footer'
-import FloatingWhatsApp from './components/FloatingWhatsApp'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Layout from './components/Layout'
+import Home from './pages/Home'
+import ProjectsPage from './pages/ProjectsPage'
+import CareersPage from './pages/CareersPage'
 import { LangContext } from './LangContext'
 import { ThemeProvider } from './ThemeContext'
 
@@ -22,20 +13,16 @@ function App() {
   return (
     <ThemeProvider>
       <LangContext.Provider value={{ lang, setLang }}>
-        <TopBar />
-        <Navbar />
-        <Hero />
-        <ClientsMarquee />
-        <Services />
-        <Industries />
-        <Process />
-        <About />
-        <Testimonials />
-        <Projects />
-        <Careers />
-        <Contact />
-        <Footer />
-        <FloatingWhatsApp />
+        <BrowserRouter>
+          <Routes>
+            <Route element={<Layout />}>
+              <Route index element={<Home />} />
+              <Route path="proyek" element={<ProjectsPage />} />
+              <Route path="karir" element={<CareersPage />} />
+              <Route path="*" element={<Home />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
       </LangContext.Provider>
     </ThemeProvider>
   )

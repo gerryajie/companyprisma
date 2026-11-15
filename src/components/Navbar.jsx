@@ -1,17 +1,18 @@
 import { useState, useEffect, useContext } from 'react'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { Menu, X, ArrowRight, Sun, Moon } from 'lucide-react'
 import { LangContext } from '../LangContext'
 import { ThemeContext } from '../ThemeContext'
 import { content } from '../lang-data'
 
 const links = [
-  { href: '#layanan', id: 'services' },
-  { href: '#industri', id: 'industri' },
-  { href: '#keunggulan', id: 'proses' },
-  { href: '#tentang', id: 'tentang' },
-  { href: '#testimoni', id: 'testimoni' },
-  { href: '#proyek', id: 'proyek' },
-  { href: '#karir', id: 'karir' },
+  { to: '/#layanan', id: 'services' },
+  { to: '/#industri', id: 'industri' },
+  { to: '/#keunggulan', id: 'proses' },
+  { to: '/#tentang', id: 'tentang' },
+  { to: '/#testimoni', id: 'testimoni' },
+  { to: '/proyek', id: 'proyek' },
+  { to: '/karir', id: 'karir' },
 ]
 
 const linkKeys = {
@@ -29,9 +30,12 @@ export default function Navbar() {
   const [open, setOpen] = useState(false)
   const { lang, setLang } = useContext(LangContext)
   const { theme, setTheme } = useContext(ThemeContext)
+  const navigate = useNavigate()
+  const location = useLocation()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 30)
+    onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
@@ -41,17 +45,44 @@ export default function Navbar() {
     return () => { document.body.style.overflow = '' }
   }, [open])
 
+  useEffect(() => { setOpen(false) }, [location.pathname, location.hash])
+
   const t = content[lang]
+  const isActive = (to) => {
+    if (to.startsWith('/#')) {
+      return location.pathname === '/' && location.hash === to.slice(1)
+    }
+    return location.pathname === to
+  }
+
+  const goContact = () => {
+    setOpen(false)
+    if (location.pathname === '/') {
+      document.getElementById('kontak')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      window.history.replaceState(null, '', '/#kontak')
+      return
+    }
+    navigate('/#kontak')
+  }
 
   return (
     <header className={`navbar ${scrolled ? 'scrolled' : ''}`}>
-      <a href="#beranda" className="nav-logo" onClick={() => setOpen(false)}>
+      <Link
+        to="/"
+        className="nav-logo"
+        onClick={() => {
+          setOpen(false)
+          if (location.pathname === '/' && !location.hash) {
+            window.scrollTo({ top: 0, behavior: 'smooth' })
+          }
+        }}
+      >
         <img src="/logo.png" alt="Logo Prisma Centra Nusantara" />
         <div className="nav-logo-text">
           <strong>PRISMA</strong>
           <small>Centra Nusantara</small>
         </div>
-      </a>
+      </Link>
 
       <button className="nav-toggle" aria-label={t.nav_toggle_aria} onClick={() => setOpen((v) => !v)}>
         {open ? <X size={20} /> : <Menu size={20} />}
@@ -60,10 +91,14 @@ export default function Navbar() {
       <nav>
         <ul className={`nav-links ${open ? 'open' : ''}`}>
           {links.map((l) => (
-            <li key={l.href}>
-              <a href={l.href} onClick={() => setOpen(false)}>
+            <li key={l.to}>
+              <Link
+                to={l.to}
+                className={isActive(l.to) ? 'active' : undefined}
+                onClick={() => setOpen(false)}
+              >
                 {t[linkKeys[l.id]]}
-              </a>
+              </Link>
             </li>
           ))}
           <li className="nav-controls">
@@ -84,13 +119,7 @@ export default function Navbar() {
             </button>
           </li>
           <li>
-            <button
-              className="btn-nav"
-              onClick={() => {
-                setOpen(false)
-                window.location.hash = '#kontak'
-              }}
-            >
+            <button className="btn-nav" onClick={goContact}>
               {t.nav_cta}
               <ArrowRight size={15} strokeWidth={2.2} />
             </button>

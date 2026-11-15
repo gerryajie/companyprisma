@@ -1,13 +1,14 @@
 import { useContext } from 'react'
+import { Link } from 'react-router-dom'
 import { Globe, MessageCircle, Send } from 'lucide-react'
 import { LangContext } from '../LangContext'
 import { content } from '../lang-data'
 import { phoneHref, phoneDisplay, emailHref, emailDisplay, waHref } from '../contact-data.js'
 
 const socials = [
-  { icon: Globe, labelId: 'Website', labelEn: 'Website', href: '#' },
+  { icon: Globe, labelId: 'Website', labelEn: 'Website', href: '/' },
   { icon: MessageCircle, labelId: 'WhatsApp', labelEn: 'WhatsApp', href: waHref },
-  { icon: Send, labelId: 'Telegram', labelEn: 'Telegram', href: '#' },
+  { icon: Send, labelId: 'Telegram', labelEn: 'Telegram', href: waHref },
 ]
 
 export default function Footer() {
@@ -20,14 +21,66 @@ export default function Footer() {
 
   const footerColumns = lang === 'id'
     ? [
-        { title: 'Perusahaan', links: ['Tentang Kami', 'Tim & Karier', 'Portofolio', 'Blog'] },
-        { title: 'Layanan', links: ['Custom Software', 'Mobile Apps', 'Cloud & DevOps', 'UI/UX Design', 'Managed Hosting', 'IT Consulting'] },
-        { title: 'Industri', links: ['Perbankan', 'Manufaktur', 'Kesehatan', 'Logistik', 'Pemerintahan'] },
+        {
+          title: 'Perusahaan',
+          links: [
+            { label: 'Tentang Kami', to: '/#tentang' },
+            { label: 'Proyek', to: '/proyek' },
+            { label: 'Karier', to: '/karir' },
+            { label: 'Kontak', to: '/#kontak' },
+          ],
+        },
+        {
+          title: 'Layanan',
+          links: [
+            { label: 'Custom Software', to: '/#layanan' },
+            { label: 'Mobile Apps', to: '/#layanan' },
+            { label: 'Cloud & DevOps', to: '/#layanan' },
+            { label: 'UI/UX Design', to: '/#layanan' },
+            { label: 'IT Consulting', to: '/#layanan' },
+          ],
+        },
+        {
+          title: 'Industri',
+          links: [
+            { label: 'Perbankan', to: '/#industri' },
+            { label: 'Manufaktur', to: '/#industri' },
+            { label: 'Kesehatan', to: '/#industri' },
+            { label: 'Logistik', to: '/#industri' },
+            { label: 'Pemerintahan', to: '/#industri' },
+          ],
+        },
       ]
     : [
-        { title: 'Company', links: ['About Us', 'Team & Careers', 'Portfolio', 'Blog'] },
-        { title: 'Services', links: ['Custom Software', 'Mobile Apps', 'Cloud & DevOps', 'UI/UX Design', 'Managed Hosting', 'IT Consulting'] },
-        { title: 'Industries', links: ['Banking', 'Manufacturing', 'Healthcare', 'Logistics', 'Government'] },
+        {
+          title: 'Company',
+          links: [
+            { label: 'About Us', to: '/#tentang' },
+            { label: 'Projects', to: '/proyek' },
+            { label: 'Careers', to: '/karir' },
+            { label: 'Contact', to: '/#kontak' },
+          ],
+        },
+        {
+          title: 'Services',
+          links: [
+            { label: 'Custom Software', to: '/#layanan' },
+            { label: 'Mobile Apps', to: '/#layanan' },
+            { label: 'Cloud & DevOps', to: '/#layanan' },
+            { label: 'UI/UX Design', to: '/#layanan' },
+            { label: 'IT Consulting', to: '/#layanan' },
+          ],
+        },
+        {
+          title: 'Industries',
+          links: [
+            { label: 'Banking', to: '/#industri' },
+            { label: 'Manufacturing', to: '/#industri' },
+            { label: 'Healthcare', to: '/#industri' },
+            { label: 'Logistics', to: '/#industri' },
+            { label: 'Government', to: '/#industri' },
+          ],
+        },
       ]
 
   return (
@@ -52,7 +105,9 @@ export default function Footer() {
               <h4>{title}</h4>
               <ul>
                 {links.map((link) => (
-                  <li key={link}><a href="#">{link}</a></li>
+                  <li key={link.label}>
+                    <Link to={link.to}>{link.label}</Link>
+                  </li>
                 ))}
               </ul>
             </div>

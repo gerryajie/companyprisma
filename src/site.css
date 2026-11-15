@@ -273,6 +273,8 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 }
 .nav-links a:hover { color: var(--ink); }
 .nav-links a:hover::after { transform: scaleX(1); }
+.nav-links a.active { color: var(--accent); }
+.nav-links a.active::after { transform: scaleX(1); }
 
 .btn-nav {
   all: unset;
@@ -405,6 +407,38 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   box-shadow: 0 8px 22px rgba(10,110,209,.35), inset 0 1px 0 rgba(255,255,255,.22);
 }
 .btn-contact:hover { background: linear-gradient(180deg, #4b8ffb 0%, #2f74f0 100%); box-shadow: 0 12px 30px rgba(37,99,235,.45), inset 0 1px 0 rgba(255,255,255,.28); }
+
+/* ── Page Hero (subpages) ─────────────────────────────── */
+.page-hero {
+  background: #0B1B2B;
+  color: #fff;
+  padding: 72px 0 60px;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+:root[data-theme='dark'] .page-hero { background: #0E1626; }
+.page-crumb {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: .85rem;
+  color: #94A3B8;
+  margin-bottom: 20px;
+}
+.page-crumb a { color: #60A5FA; text-decoration: none; transition: color .2s; }
+.page-crumb a:hover { color: #93C5FD; text-decoration: underline; }
+.page-hero h1 {
+  font: 800 clamp(2rem,4vw,2.9rem)/1.1 var(--font-h);
+  letter-spacing: -.02em;
+  margin: 14px 0 16px;
+  max-width: 780px;
+}
+.page-hero p {
+  max-width: 600px;
+  color: #94A3B8;
+  font-size: 1rem;
+  line-height: 1.75;
+}
+.page-hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
 .btn-contact:active { transform: translateY(0); }
 .btn-contact:focus-visible { outline: 2px solid #93c5fd; outline-offset: 3px; }
 .btn-contact svg { width: 18px; height: 18px; stroke-width: 2.1; }
@@ -839,6 +873,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 
 /* ══════════════════════════════════════════════════════════
    PROJECTS
+
    ══════════════════════════════════════════════════════════ */
 .projects-section { background: var(--surface); border-top: 1px solid var(--line); }
 .projects-head { max-width: 680px; }
@@ -1022,6 +1057,8 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   .nav-links li { width: 100%; }
   .nav-links a { display: block; width: 100%; padding: 16px 22px; font-size: .95rem; border-bottom: 1px solid var(--line); }
   .nav-links a::after { display: none; }
+  .page-hero { padding: 56px 0 44px; }
+  .page-hero-actions .btn { width: 100%; justify-content: center; }
   .nav-controls { padding: 16px 22px; justify-content: flex-start; gap: 10px; border-bottom: 1px solid var(--line); }
   .nav-controls .lang-btn,
   .nav-controls .theme-btn { width: 40px; height: 40px; }

@@ -18,11 +18,6 @@ export default function Careers() {
     <section id="karir" className="section careers-section">
       <div className="container">
         <div className="careers-intro">
-          <div className="section-head">
-            <span className="section-label">{isEn ? 'Careers' : 'Karier'}</span>
-            <h2>{isEn ? 'Build Meaningful Systems With Us' : 'Bangun Sistem yang Berdampak Bersama Kami'}</h2>
-            <p>{isEn ? 'We are looking for thoughtful people who care about craft, collaboration, and technology that solves real operational challenges.' : 'Kami mencari talenta yang peduli pada kualitas kerja, kolaborasi, dan teknologi yang menyelesaikan tantangan operasional nyata.'}</p>
-          </div>
           <div className="careers-note">
             <BriefcaseBusiness size={22} />
             <div>
@@ -33,7 +28,7 @@ export default function Careers() {
           </div>
         </div>
 
-        <div className="careers-grid">
+        <div className="careers-grid" id="posisi">
           {roles.map((role) => (
             <article className="career-card" key={role.title}>
               <div className="career-card-top">

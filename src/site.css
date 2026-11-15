@@ -915,7 +915,11 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .career-meta { display: flex; align-items: center; gap: 5px; margin-top: 15px; color: var(--text-mid); font-size: .72rem; }
 .career-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 15px; }
 .career-tags span { padding: 4px 8px; border-radius: 5px; color: var(--accent); background: rgba(10,110,209,.08); font-size: .68rem; }
-.career-link { display: inline-flex; align-items: center; gap: 6px; margin-top: auto; padding-top: 20px; color: var(--accent); font: 700 .78rem var(--font-b); }
+.career-link {
+  appearance: none;
+  font: inherit;
+  text-align: left;
+  cursor: pointer; display: inline-flex; align-items: center; gap: 6px; margin-top: auto; padding-top: 20px; color: var(--accent); font: 700 .78rem var(--font-b); }
 .career-link:hover { color: var(--ink); }
 
 /* ══════════════════════════════════════════════════════════

@@ -1,7 +1,7 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { ArrowUpRight, BriefcaseBusiness, Clock3, MapPin } from 'lucide-react'
 import { LangContext } from '../LangContext'
-import { emailHref } from '../contact-data.js'
+import CareerApplyModal from './CareerApplyModal'
 
 const roles = [
   { title: 'Fullstack Developer', en: 'Fullstack Developer', tags: ['React', 'Node.js', 'API'], desc: 'Bangun aplikasi web end-to-end yang cepat, aman, dan siap berkembang bersama kebutuhan bisnis.' },
@@ -12,6 +12,7 @@ const roles = [
 
 export default function Careers() {
   const { lang } = useContext(LangContext)
+  const [selectedRole, setSelectedRole] = useState(null)
   const isEn = lang === 'en'
 
   return (
@@ -22,7 +23,7 @@ export default function Careers() {
             <BriefcaseBusiness size={22} />
             <div>
               <strong>{isEn ? 'Open opportunities' : 'Peluang terbuka'}</strong>
-              <span>{isEn ? 'Remote-friendly · Indonesia' : 'Remote-friendly · Indonesia'}</span>
+              <span>Remote-friendly · Indonesia</span>
             </div>
             <span className="careers-count">4 {isEn ? 'open roles' : 'posisi terbuka'}</span>
           </div>
@@ -37,15 +38,16 @@ export default function Careers() {
               </div>
               <h3>{isEn ? role.en : role.title}</h3>
               <p>{role.desc}</p>
-              <div className="career-meta"><MapPin size={14} /> {isEn ? 'Indonesia · Remote-friendly' : 'Indonesia · Remote-friendly'}</div>
+              <div className="career-meta"><MapPin size={14} /> Indonesia · Remote-friendly</div>
               <div className="career-tags">{role.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
-              <a href={`${emailHref}?subject=${encodeURIComponent(`Lamaran ${role.title} — Website Prisma Centra`)}`} className="career-link">
+              <button type="button" className="career-link" onClick={() => setSelectedRole(isEn ? role.en : role.title)}>
                 {isEn ? 'Apply for this role' : 'Lamar posisi ini'} <ArrowUpRight size={16} />
-              </a>
+              </button>
             </article>
           ))}
         </div>
       </div>
+      <CareerApplyModal open={!!selectedRole} onClose={() => setSelectedRole(null)} role={selectedRole} lang={lang} />
     </section>
   )
 }

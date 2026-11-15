@@ -12,25 +12,28 @@ import Contact from './components/Contact'
 import Footer from './components/Footer'
 import FloatingWhatsApp from './components/FloatingWhatsApp'
 import { LangContext } from './LangContext'
+import { ThemeProvider } from './ThemeContext'
 
 function App() {
   const [lang, setLang] = useState('id')
 
   return (
-    <LangContext.Provider value={{ lang, setLang }}>
-      <TopBar />
-      <Navbar />
-      <Hero />
-      <ClientsMarquee />
-      <Services />
-      <Industries />
-      <Process />
-      <About />
-      <Testimonials />
-      <Contact />
-      <Footer />
-      <FloatingWhatsApp />
-    </LangContext.Provider>
+    <ThemeProvider>
+      <LangContext.Provider value={{ lang, setLang }}>
+        <TopBar />
+        <Navbar />
+        <Hero />
+        <ClientsMarquee />
+        <Services />
+        <Industries />
+        <Process />
+        <About />
+        <Testimonials />
+        <Contact />
+        <Footer />
+        <FloatingWhatsApp />
+      </LangContext.Provider>
+    </ThemeProvider>
   )
 }
 

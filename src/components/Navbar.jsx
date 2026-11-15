@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from 'react'
-import { Menu, X, ArrowRight } from 'lucide-react'
+import { Menu, X, ArrowRight, Sun, Moon } from 'lucide-react'
 import { LangContext } from '../LangContext'
+import { ThemeContext } from '../ThemeContext'
 import { content } from '../lang-data'
 
 const links = [
@@ -23,6 +24,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const { lang, setLang } = useContext(LangContext)
+  const { theme, setTheme } = useContext(ThemeContext)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 30)
@@ -62,6 +64,16 @@ export default function Navbar() {
               title={lang === 'id' ? 'Switch to English' : 'Beralih ke Bahasa Indonesia'}
             >
               {lang === 'id' ? 'EN' : 'ID'}
+            </button>
+          </li>
+          <li className="nav-theme-toggle">
+            <button
+              className="theme-btn"
+              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+              title={theme === 'dark' ? 'Light mode' : 'Dark mode'}
+              aria-label="Toggle dark mode"
+            >
+              {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
             </button>
           </li>
           <li>

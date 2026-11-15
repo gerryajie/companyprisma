@@ -6,6 +6,7 @@ const files = [
   { id: 'as', name: 'AS', ext: 'jpg' },
   { id: 'cahaya-mandiri-farma', name: 'Cahaya Mandiri Farma', ext: 'jpg' },
   { id: 'dsv', name: 'DSV', ext: 'png' },
+  { id: 'mister-pancong', name: 'Mister Pancong', ext: 'png' },
 ]
 
 export const clientCompanies = files.map((item) => ({

@@ -9,6 +9,7 @@ const testimonials = [
   { text: 'Dengan solusi Prisma, PT PAMA dapat memantau kualitas udara secara real time sehingga kondisi lingkungan lebih mudah dikendalikan dan ditindaklanjuti.', product: 'Dashboard Monitoring Kelayakan Kualitas Udara', company: 'PT PAMA' },
   { text: 'Prisma menghadirkan visibilitas terpusat untuk memantau kondisi unit HVAC, suhu, dan konsumsi daya—membantu tim bekerja lebih responsif dan efisien.', product: 'Dashboard Monitoring Mesin HVAC', company: 'PT Alam Teknik Utama' },
   { text: 'Solusi monitoring Prisma memudahkan PT Lemigas memantau pressure di setiap titik field dari ruang central, dengan data yang lebih terstruktur untuk mendukung pengawasan operasional.', product: 'Dashboard Monitoring Gas', company: 'PT Lemigas' },
+  { text: 'Prisma membantu Mister Pancong tampil lebih profesional di dunia digital—identitas visual yang konsisten, halaman pemesanan yang ringan dipakai pelanggan, dan promosi yang lebih terarah sehingga penjualan lebih mudah diukur.', product: 'Website & Identitas Digital', company: 'Mister Pancong', owner: 'Rian' },
 ]
 
 export default function Testimonials() {
@@ -46,7 +47,7 @@ export default function Testimonials() {
                 ) : (
                   <div className="testi-avatar">{companyInitials(item.company)}</div>
                 )}
-                <div className="testi-info"><strong>{item.product}</strong><small>{item.company}</small></div>
+                <div className="testi-info"><strong>{item.product}</strong><small>{item.owner ? `${item.owner}, ${item.company}` : item.company}</small></div>
               </div>
             </div>
             <div className="testi-nav">

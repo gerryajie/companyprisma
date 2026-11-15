@@ -5,10 +5,10 @@ import { clientCompanies } from '../client-companies'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 const testimonials = [
-  { text: 'Prisma membantu kami membangun sistem ERP internal yang mengurangi waktu pelaporan dari tiga hari menjadi satu jam.', author: 'Ahmad Fauzi', role: 'CTO', company: 'Nusantara Logistik' },
-  { text: 'Migrasi infrastruktur kami ke cloud berjalan tanpa gangguan berarti. Biaya operasional IT turun sementara performa meningkat.', author: 'Sari Handayani', role: 'Direktur Operasional', company: 'Bank Sentosa' },
-  { text: 'Aplikasi digital kami dirancang sederhana, mudah digunakan, dan andal untuk mendukung kebutuhan operasional harian.', author: 'Dr. Rudi Hartono', role: 'Kepala IT', company: 'RS Harapan Sehat' },
-  { text: 'Konsultasi transformasi digital dari Prisma memberikan peta jalan yang jelas dan keputusan investasi yang lebih terarah.', author: 'Bambang Sutrisno', role: 'VP Technology', company: 'Maju Bersama Group' },
+  { text: 'Dapat memonitor penggunaan konsumsi listrik secara real time dan mengkonversinya dalam rupiah.', product: 'Dashboard Monitoring Konsumsi Listrik', company: 'PT PAMA' },
+  { text: 'Memonitor kandungan udara dan kelayakan udara secara realtime.', product: 'Dashboard Monitoring Kelayakan Kualitas Udara', company: 'PT PAMA' },
+  { text: 'Memonitor kondisi unit, suhu, dan konsumsi daya dari perangkat mesin HVAC yang terpasang.', product: 'Dashboard Monitoring Mesin HVAC', company: 'PT Alam Teknik Utama' },
+  { text: 'Monitor pressure pada setiap titik di field dan memonitornya dari ruang central.', product: 'Dashboard Monitoring Gas', company: 'PT Lemigas' },
 ]
 
 export default function Testimonials() {
@@ -24,6 +24,9 @@ export default function Testimonials() {
 
   const item = testimonials[current]
 
+  const companyInitials = (c) => c.replace(/^PT /, '').slice(0, 2).toUpperCase()
+  const logoSrc = clientCompanies.find((co) => co.name === item.company)?.src || null
+
   return (
     <section id="testimoni" className="section testimonials-section">
       <div className="container">
@@ -38,8 +41,12 @@ export default function Testimonials() {
               <div className="testi-quote-mark" aria-hidden="true">&ldquo;</div>
               <p className="testi-text">{item.text}</p>
               <div className="testi-author">
-                <div className="testi-avatar">{item.author.split(' ').map((x) => x[0]).join('').slice(0, 2)}</div>
-                <div className="testi-info"><strong>{item.author}</strong><small>{item.role}, {item.company}</small></div>
+                {logoSrc ? (
+                  <img className="testi-logo" src={logoSrc} alt={item.company} />
+                ) : (
+                  <div className="testi-avatar">{companyInitials(item.company)}</div>
+                )}
+                <div className="testi-info"><strong>{item.product}</strong><small>{item.company}</small></div>
               </div>
             </div>
             <div className="testi-nav">

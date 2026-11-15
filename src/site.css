@@ -798,6 +798,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .testi-text { font-family: var(--font-b); font-size: 1.12rem; font-style: italic; color: var(--ink-soft); line-height: 1.72; margin: 0 0 30px; }
 .testi-author { display: inline-flex; align-items: center; gap: 14px; }
 .testi-avatar { width: 48px; height: 48px; border-radius: 50%; background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center; font-family: var(--font-h); font-weight: 700; font-size: 1rem; flex-shrink: 0; }
+.testi-logo { width: 68px; height: auto; max-height: 48px; object-fit: contain; opacity: .92; flex-shrink: 0; }
 .testi-info strong { display: block; font-family: var(--font-h); font-size: .95rem; font-weight: 700; color: var(--ink); }
 .testi-info small { font-size: .81rem; color: var(--text-mid); }
 .testi-nav { display: flex; align-items: center; gap: 16px; margin-top: 28px; }

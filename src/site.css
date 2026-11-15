@@ -808,7 +808,8 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .testi-dot.active { background: var(--accent); width: 28px; border-radius: 4px; }
 .testimonials-logos { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
 .testimonials-logo { min-height: 76px; padding: 14px; display: flex; align-items: center; justify-content: center; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-md); }
-.testimonials-logo img { max-width: 100%; max-height: 34px; width: auto; height: auto; object-fit: contain; opacity: .78; }
+.testimonials-logo img { display: block; max-width: 100%; max-height: 44px; width: auto; height: auto; object-fit: contain; opacity: .9; }
+.testimonials-logo img[src$='/dsv.png'] { max-height: 30px; }
 .testimonials-logo:hover { border-color: var(--accent); }
 .testimonials-logo:hover img { opacity: 1; }
 

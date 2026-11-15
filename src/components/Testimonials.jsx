@@ -49,7 +49,7 @@ export default function Testimonials() {
             </div>
           </div>
           <div className="testimonials-logos" aria-label={lang === 'id' ? 'Logo perusahaan klien' : 'Client company logos'}>
-            {clientCompanies.map((company) => <div className="testimonials-logo" key={company.name}><img src={company.src} alt={company.name} loading="lazy" /></div>)}
+            {clientCompanies.map((company) => <div className="testimonials-logo" key={company.name}><img src={company.src} alt={company.name} /></div>)}
           </div>
         </div>
       </div>

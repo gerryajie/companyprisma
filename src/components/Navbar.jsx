@@ -10,6 +10,8 @@ const links = [
   { href: '#keunggulan', id: 'proses' },
   { href: '#tentang', id: 'tentang' },
   { href: '#testimoni', id: 'testimoni' },
+  { href: '#proyek', id: 'proyek' },
+  { href: '#karir', id: 'karir' },
 ]
 
 const linkKeys = {
@@ -18,6 +20,8 @@ const linkKeys = {
   proses: 'nav_process',
   tentang: 'nav_about',
   testimoni: 'nav_testimonials',
+  proyek: 'nav_projects',
+  karir: 'nav_careers',
 }
 
 export default function Navbar() {

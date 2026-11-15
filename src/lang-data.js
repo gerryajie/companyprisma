@@ -6,6 +6,8 @@ export const content = {
     nav_process: 'Proses Kerja',
     nav_about: 'Tentang',
     nav_testimonials: 'Testimoni',
+    nav_projects: 'Proyek',
+    nav_careers: 'Karier',
     nav_toggle_aria: 'Buka menu navigasi',
     nav_cta: 'Diskusikan Proyek',
     
@@ -74,6 +76,8 @@ export const content = {
     nav_process: 'Our Process',
     nav_about: 'About',
     nav_testimonials: 'Testimonials',
+    nav_projects: 'Projects',
+    nav_careers: 'Careers',
     nav_toggle_aria: 'Open menu',
     nav_cta: 'Start a Project',
     

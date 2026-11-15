@@ -8,6 +8,8 @@ import Industries from './components/Industries'
 import Process from './components/Process'
 import About from './components/About'
 import Testimonials from './components/Testimonials'
+import Projects from './components/Projects'
+import Careers from './components/Careers'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import FloatingWhatsApp from './components/FloatingWhatsApp'
@@ -29,6 +31,8 @@ function App() {
         <Process />
         <About />
         <Testimonials />
+        <Projects />
+        <Careers />
         <Contact />
         <Footer />
         <FloatingWhatsApp />

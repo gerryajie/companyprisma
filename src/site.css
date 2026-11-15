@@ -799,7 +799,6 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .testi-author { display: inline-flex; align-items: center; gap: 14px; }
 .testi-avatar { width: 48px; height: 48px; border-radius: 50%; background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center; font-family: var(--font-h); font-weight: 700; font-size: 1rem; flex-shrink: 0; }
 .testi-logo { width: 68px; height: auto; max-height: 48px; object-fit: contain; opacity: .92; flex-shrink: 0; }
-.testi-logo[src$='/alam-teknik-semesta.png'] { width: 140px; max-height: 36px; }
 .testi-info strong { display: block; font-family: var(--font-h); font-size: .95rem; font-weight: 700; color: var(--ink); }
 .testi-info small { font-size: .81rem; color: var(--text-mid); }
 .testi-nav { display: flex; align-items: center; gap: 16px; margin-top: 28px; }
@@ -814,8 +813,6 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .testimonials-logo img[src$='/dsv.png'] { max-height: 34px; }
 .testimonials-logo img[src$='/mister-pancong.png'] { max-height: 68px; }
 .testimonials-logo img[src$='/penduduk-jajan.png'] { max-height: 68px; }
-.testimonials-logo img[src$='/alam-teknik-semesta.png'] { max-height: 64px; }
-.testimonials-logo.span-2 { grid-column: 1 / -1; }
 .testimonials-logo:hover { border-color: var(--accent); }
 .testimonials-logo:hover img { opacity: 1; }
 

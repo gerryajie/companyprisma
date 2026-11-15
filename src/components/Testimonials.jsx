@@ -7,7 +7,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 const testimonials = [
   { text: 'Prisma membantu PT PAMA mengubah data konsumsi listrik menjadi insight yang mudah dipantau secara real time—termasuk estimasi biaya dalam rupiah untuk mendukung keputusan operasional yang lebih cepat.', product: 'Dashboard Monitoring Konsumsi Listrik', company: 'PT PAMA', logo: 'pama' },
   { text: 'Dengan solusi Prisma, PT PAMA dapat memantau kualitas udara secara real time sehingga kondisi lingkungan lebih mudah dikendalikan dan ditindaklanjuti.', product: 'Dashboard Monitoring Kelayakan Kualitas Udara', company: 'PT PAMA', logo: 'pama' },
-  { text: 'Prisma menghadirkan visibilitas terpusat bagi PT Alam Teknik Semesta untuk memantau kondisi unit HVAC, suhu, dan konsumsi daya—membantu tim bekerja lebih responsif dan efisien.', product: 'Dashboard Monitoring Mesin HVAC', company: 'PT Alam Teknik Semesta', logo: 'alam-teknik-semesta' },
+  { text: 'Prisma menghadirkan visibilitas terpusat bagi PT Alam Teknik Semesta untuk memantau kondisi unit HVAC, suhu, dan konsumsi daya—membantu tim bekerja lebih responsif dan efisien.', product: 'Dashboard Monitoring Mesin HVAC', company: 'PT Alam Teknik Semesta', logo: 'as' },
   { text: 'Solusi monitoring Prisma memudahkan PT Lemigas memantau pressure di setiap titik field dari ruang central, dengan data yang lebih terstruktur untuk mendukung pengawasan operasional.', product: 'Dashboard Monitoring Gas', company: 'PT Lemigas', logo: 'lemigas' },
   { text: 'Prisma membantu Mister Pancong tampil lebih profesional di dunia digital—identitas visual yang konsisten, halaman pemesanan yang ringan dipakai pelanggan, dan promosi yang lebih terarah sehingga penjualan lebih mudah diukur.', product: 'Website & Identitas Digital', company: 'Mister Pancong', owner: 'Rian', logo: 'mister-pancong' },
   { text: "Prisma bantu Pen'duduk Jajan tampil konsisten di semua kanal digital—dari identitas visual yang kuat, katalog menu yang gampang dibuka, sampai alur pesan yang praktis untuk pelanggan. Promosi jadi lebih terarah dan pesanan harian lebih rapi.", product: 'Katalog & Pemesanan Digital', company: "Pen'duduk Jajan", owner: 'Tirta', logo: 'penduduk-jajan' },
@@ -58,7 +58,7 @@ export default function Testimonials() {
             </div>
           </div>
           <div className="testimonials-logos" aria-label={lang === 'id' ? 'Logo perusahaan klien' : 'Client company logos'}>
-            {clientCompanies.map((company) => <div className={`testimonials-logo ${company.name === 'PT Alam Teknik Semesta' ? 'span-2' : ''}`} key={company.name}><img src={company.src} alt={company.name} /></div>)}
+            {clientCompanies.map((company) => <div className="testimonials-logo" key={company.name}><img src={company.src} alt={company.name} /></div>)}
           </div>
         </div>
       </div>

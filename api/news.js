@@ -80,7 +80,7 @@ export default async function handler(req, res) {
   }
 
   const results = await Promise.allSettled([
-    getJson('https://techcrunch.com/wp-json/wp/v2/posts?per_page=24&_embed=1'),
+    getJson('https://techcrunch.com/wp-json/wp/v2/posts?per_page=10'),
     getJson('https://dev.to/api/articles?tag=news&per_page=15&top=7'),
   ])
 

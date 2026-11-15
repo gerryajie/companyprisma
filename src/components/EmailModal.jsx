@@ -75,8 +75,8 @@ export default function EmailModal({ open, onClose }) {
             <div className="modal-header">
               <Mail size={22} style={{ color: 'var(--accent)' }} />
               <div>
-                <h3 id="email-modal-title" style={{ margin: 0, fontSize: '1.1rem' }}>{lang === 'id' ? 'Kirim Email kepada Kami' : 'Email Us'}</h3>
-                <p style={{ margin: '4px 0 0', fontSize: '.8rem', color: 'var(--ink-soft)' }}>
+                <h3 id="email-modal-title" style={{ margin: 0, fontSize: '1.25rem' }}>{lang === 'id' ? 'Kirim Email kepada Kami' : 'Email Us'}</h3>
+                <p style={{ margin: '4px 0 0', fontSize: '.86rem', color: 'var(--ink-soft)' }}>
                   {lang === 'id'
                     ? 'Isi form di bawah dan tim kami akan merespons dalam 1 hari kerja.'
                     : 'Fill out the form below and our team will respond within one business day.'}

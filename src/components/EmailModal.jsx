@@ -123,7 +123,7 @@ export default function EmailModal({ open, onClose }) {
             <h3 style={{ marginTop: 16 }}>{lang === 'id' ? 'Pesan Terkirim!' : 'Message Sent!'}</h3>
             <p>{t.sent}</p>
             <p style={{ fontSize: '.82rem', marginTop: 10 }}>
-              {lang === 'id' ? 'Tidak terbuka otomatis? Kirim manual ke ' : "Didn't open? Send manually to "}
+              {lang === 'id' ? 'Belum menerima balasan? Email kami di ' : 'No reply yet? Email us at '}
               <a href={emailHref} style={{ color: 'var(--accent)', fontWeight: 600 }}>{emailDisplay}</a>
             </p>
             <button className="btn-submit" onClick={onClose}>{t.close}</button>

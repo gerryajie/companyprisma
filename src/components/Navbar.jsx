@@ -13,6 +13,7 @@ const links = [
   { to: '/#testimoni', id: 'testimoni' },
   { to: '/proyek', id: 'proyek' },
   { to: '/karir', id: 'karir' },
+  { to: '/berita', id: 'berita' },
 ]
 
 const linkKeys = {
@@ -23,6 +24,7 @@ const linkKeys = {
   testimoni: 'nav_testimonials',
   proyek: 'nav_projects',
   karir: 'nav_careers',
+  berita: 'nav_news',
 }
 
 export default function Navbar() {

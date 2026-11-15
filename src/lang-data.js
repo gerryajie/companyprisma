@@ -8,6 +8,7 @@ export const content = {
     nav_testimonials: 'Testimoni',
     nav_projects: 'Proyek',
     nav_careers: 'Karier',
+    nav_news: 'Berita',
     nav_toggle_aria: 'Buka menu navigasi',
     nav_cta: 'Diskusikan Proyek',
     
@@ -78,6 +79,7 @@ export const content = {
     nav_testimonials: 'Testimonials',
     nav_projects: 'Projects',
     nav_careers: 'Careers',
+    nav_news: 'News',
     nav_toggle_aria: 'Open menu',
     nav_cta: 'Start a Project',
     

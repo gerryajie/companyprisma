@@ -4,6 +4,7 @@ import Layout from './components/Layout'
 import Home from './pages/Home'
 import ProjectsPage from './pages/ProjectsPage'
 import CareersPage from './pages/CareersPage'
+import NewsPage from './pages/NewsPage'
 import { LangContext } from './LangContext'
 import { ThemeProvider } from './ThemeContext'
 
@@ -19,6 +20,7 @@ function App() {
               <Route index element={<Home />} />
               <Route path="proyek" element={<ProjectsPage />} />
               <Route path="karir" element={<CareersPage />} />
+              <Route path="berita" element={<NewsPage />} />
               <Route path="*" element={<Home />} />
             </Route>
           </Routes>

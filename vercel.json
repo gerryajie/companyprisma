@@ -6,6 +6,7 @@
   "installCommand": "npm install",
   "rewrites": [
     { "source": "/proyek", "destination": "/index.html" },
-    { "source": "/karir", "destination": "/index.html" }
+    { "source": "/karir", "destination": "/index.html" },
+    { "source": "/berita", "destination": "/index.html" }
   ]
 }

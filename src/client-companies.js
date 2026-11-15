@@ -14,3 +14,8 @@ export const clientCompanies = files.map((item) => ({
   name: item.name,
   src: `/clients/${item.id}.${item.ext}`,
 }))
+
+export const clientById = Object.fromEntries(files.map((item) => [
+  item.id,
+  { name: item.name, src: `/clients/${item.id}.${item.ext}` },
+]))

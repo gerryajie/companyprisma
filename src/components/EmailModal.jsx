@@ -79,11 +79,11 @@ export default function EmailModal({ open, onClose }) {
               <div className="form-row">
                 <div className="form-group">
                   <label><User size={14} /> {t.name}</label>
-                  <input required name="name" value={form.name} onChange={handleChange} placeholder={lang === 'id' ? 'John Doe' : 'John Doe'} />
+                  <input required name="name" value={form.name} onChange={handleChange} placeholder={lang === 'id' ? 'John Doe' : 'isikan nama'} />
                 </div>
                 <div className="form-group">
                   <label><Building2 size={14} /> {t.company}</label>
-                  <input name="company" value={form.company} onChange={handleChange} placeholder={lang === 'id' ? 'PT Contoh' : 'Acme Corp'} />
+                  <input name="company" value={form.company} onChange={handleChange} placeholder={lang === 'id' ? 'PT Contoh' : 'isikan nama perusahaan'} />
                 </div>
               </div>
 

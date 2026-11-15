@@ -187,6 +187,11 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 :root[data-theme='dark'] .footer-brand img { background: #F8FAFC; }
 :root[data-theme='dark'] .service-icon { background: #172554; }
 :root[data-theme='dark'] .industry-icon { background: #431407; }
+:root[data-theme='dark'] .partners-label { color: #CBD5E1; }
+:root[data-theme='dark'] .marquee-item { opacity: .72; }
+:root[data-theme='dark'] .marquee-item img { filter: brightness(0) invert(1); }
+:root[data-theme='dark'] .marquee-item:hover { opacity: 1; }
+:root[data-theme='dark'] .marquee-item:hover img { filter: none; }
 :root[data-theme='dark'] .cred-num,
 :root[data-theme='dark'] .process-step:hover .step-num { background: #172554; }
 :root[data-theme='dark'] .contact-band { background: #111827; }

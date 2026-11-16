@@ -4,7 +4,7 @@ import { content } from '../lang-data'
 
 const stepsData = {
   id: [
-  { title: 'Eksplorasi Kebutuhan', desc: 'Pahami bisnis Anda secara mendalam — proses, kendala utama, dan tujuan jangka panjang.' },
+  { title: 'Analisis Kebutuhan', desc: 'Pahami bisnis Anda secara mendalam — proses, kendala utama, dan tujuan jangka panjang.' },
   { title: 'Perencanaan', desc: 'Rumuskan arsitektur, lini waktu, dan tonggak capaian yang transparan bersama tim Anda.' },
   { title: 'Pengembangan', desc: 'Eksekusi dengan praktik rekayasa perangkat lunak terbaik, tinjauan kode, dan demo berkala.' },
   { title: 'Peluncuran & Dukungan', desc: 'Peluncuran ke lingkungan produksi, pemantauan aktif, dan dukungan pemeliharaan pasca-peluncuran.' },

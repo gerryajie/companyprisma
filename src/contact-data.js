@@ -10,6 +10,7 @@ export const waDisplay = '0' + parts.slice(1).join('')
 export const phoneHref = waHref
 export const phoneDisplay = '+62 ' + parts.slice(1).join(' ')
 export const addressDisplay = 'Padasuka 1 No. 27, Karawaci, Tangerang, Banten'
+export const companyName = 'PT Prisma Centra Nusantara'
 
 export const emailHref = 'mailto:admin@prismatech.co.id'
 export const emailDisplay = 'admin@prismatech.co.id'

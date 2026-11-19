@@ -1,7 +1,7 @@
 import { useContext } from 'react'
-import { Mail, Phone, MapPin } from 'lucide-react'
+import { Mail, Phone, MapPin, Building2 } from 'lucide-react'
 import { LangContext } from '../LangContext'
-import { phoneDisplay, phoneHref, emailDisplay, emailHref, addressDisplay } from '../contact-data.js'
+import { phoneDisplay, phoneHref, emailDisplay, emailHref, addressDisplay, companyName } from '../contact-data.js'
 import EmailModal from './EmailModal'
 import { useState } from 'react'
 import { content } from '../lang-data'
@@ -21,6 +21,7 @@ export default function Contact() {
         </button>
 
         <div className="contact-row">
+          <span className="contact-item"><Building2 size={18} /> {companyName}</span>
           <a className="contact-item" href={phoneHref} target="_blank" rel="noopener noreferrer"><Phone size={18} /> {phoneDisplay}</a>
           <a className="contact-item" href={emailHref}><Mail size={18} /> {emailDisplay}</a>
           <span className="contact-item"><MapPin size={18} /> {addressDisplay}</span>

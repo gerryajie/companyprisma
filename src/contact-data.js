@@ -11,5 +11,5 @@ export const phoneHref = waHref
 export const phoneDisplay = '+62 ' + parts.slice(1).join(' ')
 export const addressDisplay = 'Padasuka 1 No. 27, Karawaci, Tangerang, Banten'
 
-export const emailHref = 'mailto:prismanextech@gmail.com'
-export const emailDisplay = 'prismanextech@gmail.com'
+export const emailHref = 'mailto:admin@prismatech.co.id'
+export const emailDisplay = 'admin@prismatech.co.id'

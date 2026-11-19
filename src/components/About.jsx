@@ -37,7 +37,7 @@ export default function About() {
             <span className="section-label">{t.nav_about}</span>
             <h2>{t.about_h2}</h2>
             <p>{t.about_p}</p>
-            <p>{lang === 'id' ? 'Kami hadir dengan semangat startup yang gesit, namun dibekali keahlian senior yang telah terbukti menangani proyek enterprise-grade. Filosofi kami: teknologi harus melayani bisnis — bukan sebaliknya.' : 'We bring agile startup spirit, backed by senior expertise proven in enterprise-grade projects. Our philosophy: technology should serve business — not the other way around.'}</p>
+            <p>{lang === 'id' ? 'Kami bergerak cepat tanpa mengorbankan hal dasar: komunikasi jelas, keputusan yang bisa dijelaskan, dan sistem yang tetap masuk akal setelah proyek selesai. Teknologi harus membantu orang bekerja, bukan menambah pekerjaan.' : 'We move quickly without skipping the basics: clear communication, explainable decisions, and systems that still make sense after the project ends. Technology should help people work, not create more work.'}</p>
             <ul style={{ listStyle: 'none', marginTop: 28 }}>
               {highlights.map((h) => (
                 <li key={h} style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12, fontSize: '.9rem', color: 'var(--ink-soft)' }}>

@@ -14,10 +14,6 @@ export default function Footer() {
   const { lang } = useContext(LangContext)
   const t = content[lang]
 
-  const aboutText = lang === 'id'
-    ? 'Perusahaan teknologi baru dengan tim senior berpengalaman 5+ tahun — membangun sistem yang stabil, aman, dan skalabel untuk bisnis Anda.'
-    : 'A new technology company backed by a senior team with 5+ years of experience — building stable, secure, and scalable systems for your business.'
-
   const footerColumns = lang === 'id'
     ? [
         {
@@ -89,9 +85,9 @@ export default function Footer() {
       <div className="container">
         <div className="footer-grid">
           <div className="footer-brand">
-            <img src="/logo.png" alt={lang === 'id' ? 'Logo Prisma Centra Nusantara' : 'Prisma Centra Nusantara Logo'} />
+            <img src="/logo.png" alt={t.nav_about} />
             <strong>Prisma Centra Nusantara</strong>
-            <p>{aboutText}</p>
+            <p>{t.footer_about}</p>
             <div style={{ display: 'flex', gap: 12, marginTop: 20 }}>
               {socials.map(({ icon: Icon, labelId, labelEn, href }) => (
                 <a key={labelId} href={href} aria-label={lang === 'id' ? labelId : labelEn} style={{ width: 34, height: 34, borderRadius: 8, border: '1px solid rgba(255,255,255,.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#64748B', transition: 'all .2s' }} onMouseEnter={(e) => { e.currentTarget.style.borderColor = '#60A5FA'; e.currentTarget.style.color = '#60A5FA'; }} onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'rgba(255,255,255,.1)'; e.currentTarget.style.color = '#64748B'; }}>
@@ -115,7 +111,7 @@ export default function Footer() {
           ))}
 
           <div className="footer-col">
-            <h4>{lang === 'id' ? 'Kontak' : 'Contact'}</h4>
+            <h4>{t.footer_contact}</h4>
             <ul>
               <li><a href={emailHref}>{emailDisplay}</a></li>
               <li><a href={phoneHref} target="_blank" rel="noopener noreferrer">{phoneDisplay}</a></li>

@@ -15,7 +15,7 @@ export default function Services() {
       {
         icon: Code2,
         title: 'Custom Software Development',
-        desc: 'Aplikasi web dan desktop yang dirancang khusus sesuai proses bisnis Anda — skalabel, aman, dan terpelihara dalam jangka panjang.',
+        desc: 'Aplikasi web dan desktop yang mengikuti cara kerja tim Anda. Dibuat aman, mudah dirawat, dan tidak menyulitkan saat kebutuhan berubah.',
       },
       {
         icon: Smartphone,
@@ -35,19 +35,19 @@ export default function Services() {
       {
         icon: Server,
         title: 'Managed Hosting & Infrastructure',
-        desc: 'Infrastruktur terkelola dengan pemantauan 24/7, cadangan otomatis, dan SLA keandalan tinggi — Anda fokus pada bisnis.',
+        desc: 'Infrastruktur terkelola dengan pemantauan 24/7, cadangan otomatis, dan SLA keandalan tinggi. Anda fokus pada bisnis.',
       },
       {
         icon: ShieldCheck,
         title: 'IT Consulting & Strategy',
-        desc: 'Audit teknologi, peta jalan transformasi digital, dan rekomendasi arsitektur yang sejalan dengan tujuan organisasi.',
+        desc: 'Kami cek kondisi teknologi sekarang, lalu susun langkah yang masuk akal, bukan roadmap panjang yang tidak pernah dipakai.',
       },
     ],
     en: [
       {
         icon: Code2,
         title: 'Custom Software Development',
-        desc: 'Web and desktop applications custom-designed to match your business processes — scalable, secure, and maintainable for the long term.',
+        desc: 'Web and desktop applications custom-designed to match your business processes. Scalable, secure, and maintainable for the long term.',
       },
       {
         icon: Smartphone,
@@ -67,7 +67,7 @@ export default function Services() {
       {
         icon: Server,
         title: 'Managed Hosting & Infrastructure',
-        desc: 'Managed infrastructure with 24/7 monitoring, automatic backups, and high-reliability SLA — you focus on business.',
+        desc: 'Managed infrastructure with 24/7 monitoring, automatic backups, and a high-reliability SLA. You focus on the business.',
       },
       {
         icon: ShieldCheck,

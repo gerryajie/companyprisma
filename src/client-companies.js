@@ -1,13 +1,13 @@
 // Real client logos supplied in /Downloads/gambar_trikarsa.
 const files = [
-  { id: 'iu', name: 'iU' , ext: 'png' },
-  { id: 'pama', name: 'PAMA — member of ASTRA', ext: 'png' },
+  { id: 'pama', name: 'PAMA, member of ASTRA', ext: 'png' },
   { id: 'lemigas', name: 'LEMIGAS', ext: 'png' },
   { id: 'as', name: 'PT Alam Teknik Semesta', ext: 'jpg' },
   { id: 'cahaya-mandiri-farma', name: 'Cahaya Mandiri Farma', ext: 'jpg' },
   { id: 'dsv', name: 'DSV', ext: 'png' },
   { id: 'mister-pancong', name: 'Mister Pancong', ext: 'png' },
-  { id: 'penduduk-jajan', name: "Pen'duduk Jajan", ext: 'png' }
+  { id: 'penduduk-jajan', name: "Pen'duduk Jajan", ext: 'png' },
+  { id: 'ats-tekno', name: 'ATS Tekno', ext: 'png' }
 ]
 
 export const clientCompanies = files.map((item) => ({

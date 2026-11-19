@@ -6,7 +6,7 @@ import { Landmark, Factory, Stethoscope, Truck, ShoppingBag, Building2 } from 'l
 const industries = [
   { name: 'Perbankan & Keuangan', icon: Landmark, img: '/img/banking.jpg', desc: 'Sistem keuangan yang aman dan terintegrasi untuk bank konvensional, BPR, hingga fintech.' },
   { name: 'Manufaktur', icon: Factory, img: '/img/manufacturing.jpg', desc: 'Otomatisasi produksi, IoT, dan pemantauan real-time untuk industri manufaktur modern.' },
-  { name: 'Layanan Kesehatan', icon: Stethoscope, img: '/img/healthcare.jpg', desc: 'Platform kesehatan yang andal — rekam medis digital, telemedicine, hingga manajemen rumah sakit.' },
+  { name: 'Layanan Kesehatan', icon: Stethoscope, img: '/img/healthcare.jpg', desc: 'Platform kesehatan yang andal untuk rekam medis digital, telemedicine, hingga manajemen rumah sakit.' },
   { name: 'Logistik & Pengiriman', icon: Truck, img: '/img/logistics.jpg', desc: 'Solusi digitalisasi rantai pasok, pelacakan armada, dan optimasi distribusi.' },
   { name: 'Perdagangan & Distribusi', icon: ShoppingBag, img: '/img/trading.jpg', desc: 'Manajemen stok, penjualan, dan rantai pasok dalam satu ekosistem terpadu.' },
   { name: 'Pemerintahan & BUMN', icon: Building2, img: '/img/government.jpg', desc: 'Transformasi digital layanan publik dengan keamanan data sesuai regulasi nasional.' },

@@ -69,8 +69,8 @@ export default function NewsPage() {
           <span className="section-label">{isEn ? 'Live Feed' : 'Umpan Langsung'}</span>
           <h1>{isEn ? 'What Is Happening in Technology' : 'Apa yang Sedang Terjadi di Teknologi'}</h1>
           <p>{isEn
-            ? 'Curated headlines from public technology APIs — TechCrunch and DEV Community — refreshed automatically.'
-            : 'Kurasi berita teknologi dari API publik — TechCrunch dan DEV Community — diperbarui otomatis.'}</p>
+            ? 'Curated headlines from public technology APIs, TechCrunch and DEV Community, refreshed automatically.'
+            : 'Kurasi berita teknologi dari API publik TechCrunch dan DEV Community, diperbarui otomatis.'}</p>
           <div className="page-hero-actions">
             <button type="button" className="btn btn-primary" onClick={load} disabled={loading}>
               <RefreshCw size={16} className={loading ? 'spin' : undefined} /> {loading ? (isEn ? 'Loading...' : 'Memuat...') : (isEn ? 'Refresh' : 'Muat Ulang')}

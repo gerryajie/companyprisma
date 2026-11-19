@@ -1,7 +1,7 @@
 import nodemailer from 'nodemailer'
 
-const TO = process.env.RECEIVE_EMAIL || 'prismanextech@gmail.com'
-const FROM = process.env.FROM_EMAIL || process.env.SMTP_USER || 'prismanextech@gmail.com'
+const TO = process.env.RECEIVE_EMAIL || 'admin@prismatech.co.id'
+const FROM = process.env.FROM_EMAIL || process.env.SMTP_USER || 'admin@prismatech.co.id'
 
 let transporter
 function getTransporter() {
@@ -146,6 +146,6 @@ export default async function handler(req, res) {
     return res.status(200).json({ ok: true, id: info.messageId })
   } catch (err) {
     console.error('mail failed:', err.message)
-    return res.status(500).json({ error: 'Gagal mengirim pesan. Coba lagi atau email prismanextech@gmail.com langsung.' })
+    return res.status(500).json({ error: 'Gagal mengirim pesan. Coba lagi atau email admin@prismatech.co.id langsung.' })
   }
 }

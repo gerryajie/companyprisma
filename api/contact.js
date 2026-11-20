@@ -1,7 +1,8 @@
 import nodemailer from 'nodemailer'
 
-const TO = process.env.RECEIVE_EMAIL || 'admin@prismatech.co.id'
-const FROM = process.env.FROM_EMAIL || process.env.SMTP_USER || 'admin@prismatech.co.id'
+const CONTACT_TO = process.env.CONTACT_RECEIVE_EMAIL || 'sales@prismatech.co.id'
+const CAREER_TO = process.env.CAREER_RECEIVE_EMAIL || 'hr@prismatech.co.id'
+const FROM = process.env.FROM_EMAIL || process.env.SMTP_USER || 'sales@prismatech.co.id'
 
 let transporter
 function getTransporter() {
@@ -122,7 +123,7 @@ export default async function handler(req, res) {
   try {
     const info = await getTransporter().sendMail({
       from: `"Website Prisma Centra" <${FROM}>`,
-      to: TO,
+      to: attachments.length ? CAREER_TO : CONTACT_TO,
       replyTo: email,
       subject: `[Website] ${subject || `Pesan baru dari ${name}`}`,
       html: `
@@ -146,6 +147,6 @@ export default async function handler(req, res) {
     return res.status(200).json({ ok: true, id: info.messageId })
   } catch (err) {
     console.error('mail failed:', err.message)
-    return res.status(500).json({ error: 'Gagal mengirim pesan. Coba lagi atau email admin@prismatech.co.id langsung.' })
+    return res.status(500).json({ error: 'Gagal mengirim pesan. Coba lagi atau email sales@prismatech.co.id langsung.' })
   }
 }

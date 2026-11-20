@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { FileText, Mail, Send, Upload, User, X } from 'lucide-react'
-import { emailDisplay } from '../contact-data.js'
+import { careerEmailDisplay } from '../contact-data.js'
 import useModalA11y from '../useModalA11y'
 
 export default function CareerApplyModal({ open, onClose, role, lang = 'id' }) {
@@ -98,7 +98,7 @@ export default function CareerApplyModal({ open, onClose, role, lang = 'id' }) {
               <Mail size={22} style={{ color: 'var(--accent)' }} />
               <div>
                 <h3 id="career-modal-title" style={{ margin: 0, fontSize: '1.25rem' }}>{isEn ? 'Apply for' : 'Lamar posisi'} {role}</h3>
-                <p style={{ margin: '4px 0 0', fontSize: '.86rem', color: 'var(--ink-soft)' }}>{emailDisplay}</p>
+                <p style={{ margin: '4px 0 0', fontSize: '.86rem', color: 'var(--ink-soft)' }}>{careerEmailDisplay}</p>
               </div>
             </div>
             <form onSubmit={submit} className="modal-form">

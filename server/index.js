@@ -48,8 +48,8 @@ app.post('/api/contact', async (req, res) => {
 
   try {
     const info = await transporter.sendMail({
-      from: `"Website Contact" <${process.env.FROM_EMAIL || 'admin@prismatech.co.id'}>`,
-      to: process.env.RECEIVE_EMAIL || 'admin@prismatech.co.id',
+      from: `"Website Contact" <${process.env.FROM_EMAIL || 'sales@prismatech.co.id'}>`,
+      to: process.env.CONTACT_RECEIVE_EMAIL || 'sales@prismatech.co.id',
       replyTo: email,
       subject: `[Contact] ${subject || 'Inquiry from Website'}`,
       html: `
